@@ -20,12 +20,11 @@ class Database {
   }
 
   getAllMembers() {
-    this.con.query("SELECT username FROM member", function (err, result, fields) {
-        if (err) throw err;
+    this.con.query("SELECT * FROM member", function (err, result, fields) {
+        if (err) throw err
         result.forEach(element => {
-            console.log(element.username);
+            console.log('Username:', element.username, 'Age:', element.age, 'Gender:', element.gender)
         })
-        
     })
   }
 }
