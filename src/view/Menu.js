@@ -39,11 +39,9 @@ getOptions() {
         console.log('MEMBER REVIEWS')
         // Get member reviews
       } else if (answers.menu === this.memberL) {
-        console.log('LIST OF MEMBERS')
         this.database.getAllMembers()
       } else if (answers.menu === this.bookI) {
-        console.log('BOOK INFO')
-        // Get book info
+        this.database.getAllBooks()
       } else if (answers.menu === this.quit) {
         console.log('\nWelcome back!\n')
         process.exit(0)

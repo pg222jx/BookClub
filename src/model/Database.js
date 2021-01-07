@@ -27,6 +27,15 @@ class Database {
         })
     })
   }
+
+  getAllBooks() {
+    this.con.query("SELECT * FROM book", function (err, result, fields) {
+      if (err) throw err
+      result.forEach(element => {
+          console.log('Title:', element.title, 'Author:', element.author, 'Publisher:', element.publisher, 'Year:', element.year)
+      })
+  })
+  }
 }
 
 module.exports = Database
