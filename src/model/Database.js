@@ -31,13 +31,23 @@ class Database {
   getUserInfo(username) {
     this.con.query("SELECT * FROM member", function (err, result, fields) {
       if (err) throw err
-      result.forEach(element => {
+        result.forEach(element => {
           if (element.username === username) {
-            console.log('Age:', element.age + ', ', 'Gender:', element.gender)
+            console.log('Age:', element.age + ',', 'Gender:', element.gender)
           }
       })
-     
-  })
+    })
+  }
+
+  getUserReview(username) {
+    this.con.query("SELECT * FROM review", function (err, result, fields) {
+      if (err) throw err
+        result.forEach(element => {
+          if (element.username === username) {
+            console.log('Title:', element.title + ',', 'Author:', element.author + ',', 'Score:', element.score + ',', 'Times Read:', element.timesRead)
+          }
+        })
+    })
   }
 
   getAllBookTitles() {

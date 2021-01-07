@@ -32,7 +32,7 @@ class MemberMenu {
       if (answers.menu === this.info) {
         this.database.getUserInfo(username)
       } else if (answers.menu === this.review) {
-        console.log('review')
+        this.database.getUserReview(username)
       } else if (answers.menu === this.return) {
         console.log('return to main menu')
       } else if (answers.menu === this.quit) {
