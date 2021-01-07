@@ -1,9 +1,8 @@
 const inquirer = require('inquirer') 
 
 class Menu {
-//   constructor () {
-//   }
-  sayhello() {
+
+getOptions() {
     console.log('Welcome to Book Club!')
     console.log('_________________________________\n')
     const start = [
@@ -39,4 +38,4 @@ class Menu {
   }
 }
 
-module.exports = Menu;
+module.exports = Menu

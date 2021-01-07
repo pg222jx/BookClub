@@ -1,5 +1,5 @@
-const Menu = require('./view/Menu');
+const Menu = require('./src/view/Menu');
 
 const menu = new Menu();
 
-menu.sayhello();
+menu.getOptions();
