@@ -1,11 +1,14 @@
 const inquirer = require('inquirer') 
 const Database = require('../model/Database') 
+const MemberMenu = require('./MemberMenu') 
 
 class Menu {
 
   constructor() {
    this.database = new Database()
-   this.database.connectToDatabase();
+   this.database.connectToDatabase()
+
+   this.memberMenu = new MemberMenu()
 
    this.memberL = 'List all Members'
    this.memberI = 'Member Information'
@@ -36,7 +39,7 @@ class Menu {
       if (answers.menu === this.memberL) {
         this.database.getAllUsernames()
       } else if (answers.menu === this.memberI) {
-        console.log('MEMBER INFO + MEMBER REVIEWS')
+        this.memberMenu.getOptions()
       } else if (answers.menu === this.memberS) {
         console.log('MEMBER STATISTICS')
       } else if (answers.menu === this.bookL) {
