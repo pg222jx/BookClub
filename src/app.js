@@ -1,5 +1,2 @@
-const Menu = require('./view/Menu');
-
-const menu = new Menu();
-
-menu.getOptions();
+const StartMenu = require('./controller/StartMenu')
+StartMenu.run()

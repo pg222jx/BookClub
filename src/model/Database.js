@@ -20,7 +20,7 @@ class Database {
   }
 
   getAllUsernames() {
-    this.con.query("SELECT username FROM member", function (err, result, fields) {
+    this.con.query("SELECT username FROM member", function (err, result) {
         if (err) throw err
         result.forEach(element => {
             console.log(element.username)
@@ -29,7 +29,7 @@ class Database {
   }
 
   getUserInfo(username) {
-    this.con.query("SELECT * FROM member", function (err, result, fields) {
+    this.con.query("SELECT * FROM member", function (err, result) {
       if (err) throw err
         result.forEach(element => {
           if (element.username === username) {
@@ -40,7 +40,7 @@ class Database {
   }
 
   getUserReview(username) {
-    this.con.query("SELECT * FROM review", function (err, result, fields) {
+    this.con.query("SELECT * FROM review", function (err, result) {
       if (err) throw err
         result.forEach(element => {
           if (element.username === username) {
@@ -51,13 +51,36 @@ class Database {
   }
 
   getAllBookTitles() {
-    this.con.query("SELECT title FROM book", function (err, result, fields) {
+    this.con.query("SELECT title FROM book", function (err, result) {
       if (err) throw err
       result.forEach(element => {
           console.log(element.title)
       })
   })
   }
+
+  getBookInfo(title) {
+    this.con.query("SELECT * FROM book", function (err, result) {
+      if (err) throw err
+        result.forEach(element => {
+          if (element.title === title) {
+            console.log('Author:', element.author + ',', 'Publisher:', element.publisher + ',', 'Year:', element.year)
+          }
+      })
+    })
+  }
+
+  getBookReview(title) {
+    this.con.query("SELECT * FROM review", function (err, result) {
+      if (err) throw err
+        result.forEach(element => {
+          if (element.title === title) {
+            console.log('Username:', element.username + ',', 'Score:', element.score + ',', 'Times Read:', element.timesRead)
+          }
+        })
+    })
+  }
 }
 
+// Exports
 module.exports = Database

@@ -1,10 +1,10 @@
 const inquirer = require('inquirer') 
-const MemberController = require('../controller/MemberController')
+const BookController = require('../controller/BookController')
 const StartMenu = require('../controller/StartMenu')
 
-class MemberMenu {
+class BookMenu {
   constructor() {
-   this.controller = new MemberController()
+   this.controller = new BookController()
 
    this.info = 'Information'
    this.review = 'Reviews'
@@ -12,7 +12,7 @@ class MemberMenu {
    this.quit = 'Quit'
   }
 
-  getOptions(username) {
+  getOptions(title) {
     console.log('Choose an option')
     console.log('_________________________________\n')
     const start = [
@@ -29,9 +29,9 @@ class MemberMenu {
   
     inquirer.prompt(start).then(answers => {
       if (answers.menu === this.info) {
-        this.controller.getUserInfo(username)
+        this.controller.getBookInfo(title)
       } else if (answers.menu === this.review) {
-        this.controller.getUserReview(username)
+        this.controller.getBookReview(title)
       } else if (answers.menu === this.return) {
         StartMenu.run()
       } else if (answers.menu === this.quit) {
@@ -45,16 +45,16 @@ class MemberMenu {
     const input = [
       {
         type: 'input',
-        name: 'username',
-        message: 'Which member do you want to search for?'
+        name: 'title',
+        message: 'Which book title do you want to search for?'
       }
     ]
 
     inquirer.prompt(input).then(answers => {
-      this.getOptions(answers.username)
+      this.getOptions(answers.title)
     })
   }
 }
 
 // Exports
-module.exports = MemberMenu
+module.exports = BookMenu

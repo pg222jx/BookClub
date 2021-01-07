@@ -1,14 +1,17 @@
 const inquirer = require('inquirer') 
+const BookController = require('../controller/BookController')
 const Database = require('../model/Database') 
+const BookMenu = require('./BookMenu')
 const MemberMenu = require('./MemberMenu') 
 
 class Menu {
-
   constructor() {
    this.database = new Database()
    this.database.connectToDatabase()
 
    this.memberMenu = new MemberMenu()
+   this.bookMenu = new BookMenu()
+   this.bookController = new BookController()
 
    this.memberL = 'List all Members'
    this.memberI = 'Member Information'
@@ -20,7 +23,6 @@ class Menu {
   }
 
   getOptions() {
-
     console.log('Welcome to Book Club!')
     console.log('_________________________________\n')
     const start = [
@@ -43,9 +45,9 @@ class Menu {
       } else if (answers.menu === this.memberS) {
         console.log('MEMBER STATISTICS')
       } else if (answers.menu === this.bookL) {
-        this.database.getAllBookTitles()
+        this.bookController.getAllBookTitles()
       } else if (answers.menu === this.bookI) {
-        console.log('BOOK INFO')
+        this.bookMenu.getInput()
       } else if (answers.menu === this.bookS) {
         console.log('BOOK STATISTICS')
       } else if (answers.menu === this.quit) {
@@ -56,4 +58,5 @@ class Menu {
   }
 }
 
+// Exports
 module.exports = Menu
