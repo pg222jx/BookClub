@@ -1,8 +1,10 @@
 
 class Menu {
-  constructor () {
+//   constructor () {
+//   }
+  sayhello() {
+      console.log('Hello World')
   }
-
 }
 
-export { Menu }
+module.exports = Menu;

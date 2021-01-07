@@ -15,5 +15,6 @@
   "bugs": {
     "url": "https://github.com/pg222jx/BookClub/issues"
   },
-  "homepage": "https://github.com/pg222jx/BookClub#readme"
+  "homepage": "https://github.com/pg222jx/BookClub#readme",
+  "dependencies": {}
 }

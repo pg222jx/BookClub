@@ -1,3 +1,5 @@
-import { Menu } from './view//Menu';
+const Menu = require('./view/Menu');
 
-const menu = new Menu()
+const menu = new Menu();
+
+menu.sayhello();
