@@ -28,6 +28,18 @@ class Database {
     })
   }
 
+  getUserInfo(username) {
+    this.con.query("SELECT * FROM member", function (err, result, fields) {
+      if (err) throw err
+      result.forEach(element => {
+          if (element.username === username) {
+            console.log('Age:', element.age + ', ', 'Gender:', element.gender)
+          }
+      })
+     
+  })
+  }
+
   getAllBookTitles() {
     this.con.query("SELECT title FROM book", function (err, result, fields) {
       if (err) throw err

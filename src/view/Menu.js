@@ -39,7 +39,7 @@ class Menu {
       if (answers.menu === this.memberL) {
         this.database.getAllUsernames()
       } else if (answers.menu === this.memberI) {
-        this.memberMenu.getOptions()
+        this.memberMenu.getInput()
       } else if (answers.menu === this.memberS) {
         console.log('MEMBER STATISTICS')
       } else if (answers.menu === this.bookL) {

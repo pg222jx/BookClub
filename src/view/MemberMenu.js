@@ -1,15 +1,19 @@
 const inquirer = require('inquirer') 
+const Database = require('../model/Database') 
 
 class MemberMenu {
 
   constructor() {
+   this.database = new Database()
+   this.database.connectToDatabase()
+
    this.info = 'Information'
    this.review = 'Reviews'
    this.return = 'Return'
    this.quit = 'Quit'
   }
 
-  getOptions() {
+  getOptions(username) {
     console.log('Choose an option')
     console.log('_________________________________\n')
     const start = [
@@ -26,15 +30,29 @@ class MemberMenu {
   
     inquirer.prompt(start).then(answers => {
       if (answers.menu === this.info) {
-        console.log('info')
+        this.database.getUserInfo(username)
       } else if (answers.menu === this.review) {
-        console.log('REVIEWS')
+        console.log('review')
       } else if (answers.menu === this.return) {
         console.log('return to main menu')
       } else if (answers.menu === this.quit) {
         console.log('\nWelcome back!\n')
         process.exit(0)
       }
+    })
+  }
+
+  getInput() {
+    const input = [
+      {
+        type: 'input',
+        name: 'username',
+        message: 'Which member do you want to search for?'
+      }
+    ]
+
+    inquirer.prompt(input).then(answers => {
+      this.getOptions(answers.username)
     })
   }
 }
