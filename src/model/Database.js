@@ -19,20 +19,20 @@ class Database {
       });
   }
 
-  getAllMembers() {
-    this.con.query("SELECT * FROM member", function (err, result, fields) {
+  getAllUsernames() {
+    this.con.query("SELECT username FROM member", function (err, result, fields) {
         if (err) throw err
         result.forEach(element => {
-            console.log('Username:', element.username, 'Age:', element.age, 'Gender:', element.gender)
+            console.log(element.username)
         })
     })
   }
 
-  getAllBooks() {
-    this.con.query("SELECT * FROM book", function (err, result, fields) {
+  getAllBookTitles() {
+    this.con.query("SELECT title FROM book", function (err, result, fields) {
       if (err) throw err
       result.forEach(element => {
-          console.log('Title:', element.title, 'Author:', element.author, 'Publisher:', element.publisher, 'Year:', element.year)
+          console.log(element.title)
       })
   })
   }
