@@ -182,6 +182,20 @@ class Database {
 
     return book
   }
+
+  async getHighestTotalScore() {
+    const result = await this.doQuery("SELECT title, (sum(score)) AS score FROM review GROUP BY title ASC LIMIT 1")
+
+    let book = {}
+    result.forEach(element => {
+        book = {
+          title: element.title,
+          score: element.score
+        }
+      })
+
+    return book
+  }
 }
 
 // Exports

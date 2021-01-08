@@ -34,12 +34,16 @@ class Print {
         console.log(count)
     }
 
-    popBookAvgScore(book) {
+    highestAvgScore(book) {
         console.log('Title: ' + book.title + ', ' + 'Average Score: ' + book.avgScore)
     }
 
-    mostReadBook(book) {
+    mostRead(book) {
         console.log('Title: ' + book.title + ', ' + 'Times Read: ' + book.timesRead)
+    }
+
+    highestTotalScore(book) {
+        console.log('Title: ' + book.title + ', ' + 'Total Score: ' + book.score)
     }
 }
 
