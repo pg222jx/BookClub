@@ -47,16 +47,14 @@ class Database {
   }
   
   async getUserInfo(username) {
-    const result = await this.doQuery("SELECT * FROM member")
+    const result = await this.doQuery("SELECT * FROM member WHERE username='" + username + "'")
 
     let user = {}
     result.forEach(element => {
-      if (element.username === username) {
         user = {
           age: element.age,
           gender: element.gender
         }
-      }
     })
 
     return user
@@ -74,69 +72,61 @@ class Database {
   }
 
   async getBookInfo(title) {
-    const result = await this.doQuery("SELECT * FROM book")
+    const result = await this.doQuery("SELECT * FROM book WHERE title='" + title + "'")
 
     let book = {}
     result.forEach(element => {
-      if (element.title === title) {
         book = {
           author: element.author,
           publisher: element.publisher,
           year: element.year
         }
-      }
     })
 
     return book
   }
 
   async getUserReviews(username) {
-    const result = await this.doQuery("SELECT * FROM review")
+    const result = await this.doQuery("SELECT * FROM review WHERE username='" + username + "'")
 
     let reviews = []
     result.forEach(element => {
-      if (element.username === username) {
         reviews.push({
           title: element.title,
           author: element.author,
           score: element.score,
           timesRead: element.timesRead
         })
-      }
     })
 
     return reviews
   }
 
   async getBookReviews(title) {
-    const result = await this.doQuery("SELECT * FROM review") 
+    const result = await this.doQuery("SELECT * FROM review WHERE title='" + title + "'") 
 
     let reviews = []
     result.forEach(element => {
-      if (element.title === title) {
         reviews.push({
           username: element.username,
           score: element.score,
           timesRead: element.timesRead
         })
-      }
     })
 
     return reviews
   }
 
   async getBookInfo(title) {
-    const result = await this.doQuery("SELECT * FROM book")
+    const result = await this.doQuery("SELECT * FROM book WHERE title='" + title + "'")
 
     let book = {}
     result.forEach(element => {
-      if (element.title === title) {
         book = {
           author: element.author,
           publisher: element.publisher,
           year: element.year
         }
-      }
     })
 
     return book
