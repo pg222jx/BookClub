@@ -82,7 +82,6 @@ class Database {
     })
 
     return book
-
   }
 
   getUserReview(username) {
