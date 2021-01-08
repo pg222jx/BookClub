@@ -16,7 +16,34 @@ class Database {
 
     this.con.connect(function(err) {
         if (err) throw err
-      });
+      })
+  }
+
+  async doQuery(queryToGet) {
+    let prom = new Promise((resolve, reject) => {
+      this.con.query(queryToGet, (err, result) => {
+        if (err) throw err
+        resolve(result)
+      })
+    })
+    
+    const value = prom.then((val) => {
+      return val
+    })
+
+    return value
+  }
+
+  async getAllBookTitles() {
+    const result = await this.doQuery("SELECT title FROM book")
+
+    let titles = []
+
+    result.forEach(element => {
+            titles.push(element.title)
+    })
+
+    return titles
   }
 
   getAllUsernames() {
@@ -48,21 +75,6 @@ class Database {
           }
         })
     })
-  }
-
-  getAllBookTitles() {
-    this.con.query("SELECT title FROM book", function (err, result) {
-      if (err) throw err
-
-      let titles = []
-      result.forEach(element => {
-          titles.push(element.title)
-      })
-
-  
-
-      return titles
-  })
   }
 
   getBookInfo(title) {

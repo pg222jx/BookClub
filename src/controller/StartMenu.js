@@ -11,19 +11,23 @@ class StartMenu {
     }
 
     async run() {
-        const answer = await this.menuView.getOptions()
+        try {
+            const answer = await this.menuView.getOptions()
 
-        if (answer === 'List all Books') {
-            let titles = this.database.getAllBookTitles()
-            for(let i = 0; i<titles.length; i++) {
-                console.log(titles[i])
+            if (answer === 'List all Books') {
+                const titles = await this.database.getAllBookTitles()
+           
+                titles.forEach(element => {
+                    console.log(element)
+                 })
+
+                // this.printView.printBookTitles(titles)
+                
             }
-            // titles.forEach(element => {
-            //     console.log(element)
-            // })
-            // this.printView.printBookTitles(titles)
-            
+        } catch (e) {
+            console.log(e)
         }
+
     }
 }
 
