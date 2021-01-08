@@ -133,15 +133,25 @@ class Database {
   }
 
   async getFemaleMembers() {
-    const result = await this.doQuery("SELECT * FROM member WHERE gender = 'female'") 
+    const result = await this.doQuery("SELECT COUNT(*) AS female FROM member WHERE gender = 'female'") 
+    
+    let count = {}
+    result.forEach(element => {
+        count = element.female
+    })
 
-    return result.length
+    return count
   }
 
   async getMaleMembers() {
-    const result = await this.doQuery("SELECT * FROM member WHERE gender = 'male'") 
+    const result = await this.doQuery("SELECT COUNT(*) AS male FROM member WHERE gender = 'male'") 
 
-    return result.length
+    let count = {}
+    result.forEach(element => {
+        count = element.male
+    })
+
+    return count
   }
 
   async getReviewedBooks() {
