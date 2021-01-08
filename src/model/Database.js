@@ -90,15 +90,30 @@ class Database {
     return book
   }
 
-  getUserReview(username) {
-    this.con.query("SELECT * FROM review", function (err, result) {
-      if (err) throw err
-        result.forEach(element => {
-          if (element.username === username) {
-            console.log('Title:', element.title + ',', 'Author:', element.author + ',', 'Score:', element.score + ',', 'Times Read:', element.timesRead)
-          }
+  async getUserReviews(username) {
+    const result = await this.doQuery("SELECT * FROM review")
+
+    let reviews = []
+    result.forEach(element => {
+      if (element.username === username) {
+        reviews.push({
+          title: element.title,
+          author: element.author,
+          score: element.score,
+          timesRead: element.timesRead
         })
+      }
     })
+
+    return reviews
+    // this.con.query("SELECT * FROM review", function (err, result) {
+    //   if (err) throw err
+    //     result.forEach(element => {
+    //       if (element.username === username) {
+    //         console.log('Title:', element.title + ',', 'Author:', element.author + ',', 'Score:', element.score + ',', 'Times Read:', element.timesRead)
+    //       }
+    //     })
+    // })
   }
 
   getBookReview(title) {

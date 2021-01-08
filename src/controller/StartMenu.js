@@ -49,6 +49,9 @@ class StartMenu {
         if (answer === 'Information') {
             const user = await this.database.getUserInfo(username)
             this.printView.printUser(user)
+        } else if (answer === 'Reviews') {
+            const reviews = await this.database.getUserReviews(username)
+            this.printView.printReviews(reviews)
         }
     }
 
