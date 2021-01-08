@@ -14,15 +14,12 @@ class StartMenu {
         try {
             const answer = await this.menuView.getOptions()
 
-            if (answer === 'List all Books') {
+            if (answer === 'List all Members') {
+                const usernames = await this.database.getAllUsernames()
+                this.printView.printUsernames(usernames)
+            }else if (answer === 'List all Books') {
                 const titles = await this.database.getAllBookTitles()
-           
-                // titles.forEach(element => {
-                //     console.log(element)
-                //  })
-
                 this.printView.printBookTitles(titles)
-                
             }
         } catch (e) {
             console.log(e)

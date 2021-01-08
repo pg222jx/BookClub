@@ -34,6 +34,18 @@ class Database {
     return value
   }
 
+  async getAllUsernames() {
+    const result = await this.doQuery("SELECT username FROM member")
+
+    let usernames = []
+
+    result.forEach(element => {
+            usernames.push(element.username)
+    })
+
+    return usernames
+  }
+
   async getAllBookTitles() {
     const result = await this.doQuery("SELECT title FROM book")
 
@@ -46,14 +58,7 @@ class Database {
     return titles
   }
 
-  getAllUsernames() {
-    this.con.query("SELECT username FROM member", function (err, result) {
-        if (err) throw err
-        result.forEach(element => {
-            console.log(element.username)
-        })
-    })
-  }
+
 
   getUserInfo(username) {
     this.con.query("SELECT * FROM member", function (err, result) {
