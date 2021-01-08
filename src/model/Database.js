@@ -47,7 +47,6 @@ class Database {
   }
   
   async getUserInfo(username) {
-
     const result = await this.doQuery("SELECT * FROM member")
 
     let user = {}

@@ -53,7 +53,12 @@ class StartMenu {
         } else if (answer === 'Reviews') {
             const reviews = await this.database.getUserReviews(username)
             this.printView.printUserReviews(reviews)
-        }
+        } else if (answer === 'Return') {
+            console.log('return to main')
+        } else if (answer === 'Quit') {
+            this.printView.printExitMessage()
+            process.exit(0)
+        } 
     }
 
     async runBookMenu(answer, title) {
@@ -63,7 +68,12 @@ class StartMenu {
         } else if (answer === 'Reviews') {
             const reviews = await this.database.getBookReviews(title)
             this.printView.printBookReviews(reviews)
-        }
+        } else if (answer === 'Return') {
+            console.log('return to main')
+        } else if (answer === 'Quit') {
+            this.printView.printExitMessage()
+            process.exit(0)
+        } 
     }
 }
 
