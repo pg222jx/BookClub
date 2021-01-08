@@ -12,7 +12,7 @@ class StartMenu {
         this.printView = new Print()
         this.memberMenu = new MemberMenu()
         this.bookMenu = new BookMenu()
-    }'Book Statistics'
+    }
 
     async run() {
         try {
