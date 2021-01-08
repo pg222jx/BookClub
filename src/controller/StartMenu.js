@@ -56,7 +56,7 @@ class StartMenu {
             const reviews = await this.database.getUserReviews(username)
             this.printView.printUserReviews(reviews)
         } else if (answer === 'Return') {
-            console.log('return to main')
+            this.run()
         } else if (answer === 'Quit') {
             this.printView.printExitMessage()
             process.exit(0)
@@ -71,7 +71,7 @@ class StartMenu {
             const reviews = await this.database.getBookReviews(title)
             this.printView.printBookReviews(reviews)
         } else if (answer === 'Return') {
-            console.log('return to main')
+            this.run()
         } else if (answer === 'Quit') {
             this.printView.printExitMessage()
             process.exit(0)
