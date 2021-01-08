@@ -1,8 +1,8 @@
 const inquirer = require('inquirer') 
 const MemberController = require('../controller/MemberController')
-const StartMenu = require('../controller/StartMenu')
 
 class MemberMenu {
+
   constructor() {
    this.controller = new MemberController()
 

@@ -2,6 +2,7 @@ const inquirer = require('inquirer')
 const BookController = require('../controller/BookController')
 
 class BookMenu {
+  
   constructor() {
    this.controller = new BookController()
 

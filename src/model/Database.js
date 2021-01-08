@@ -2,6 +2,7 @@ const mysql = require('mysql')
 require('dotenv').config()
 
 class Database {
+  
   constructor() {
     this.con = undefined
   }
@@ -106,25 +107,23 @@ class Database {
     })
 
     return reviews
-    // this.con.query("SELECT * FROM review", function (err, result) {
-    //   if (err) throw err
-    //     result.forEach(element => {
-    //       if (element.username === username) {
-    //         console.log('Title:', element.title + ',', 'Author:', element.author + ',', 'Score:', element.score + ',', 'Times Read:', element.timesRead)
-    //       }
-    //     })
-    // })
   }
 
-  getBookReview(title) {
-    this.con.query("SELECT * FROM review", function (err, result) {
-      if (err) throw err
-        result.forEach(element => {
-          if (element.title === title) {
-            console.log('Username:', element.username + ',', 'Score:', element.score + ',', 'Times Read:', element.timesRead)
-          }
+  async getBookReviews(title) {
+    const result = await this.doQuery("SELECT * FROM review") 
+
+    let reviews = []
+    result.forEach(element => {
+      if (element.title === title) {
+        reviews.push({
+          username: element.username,
+          score: element.score,
+          timesRead: element.timesRead
         })
+      }
     })
+
+    return reviews
   }
 }
 

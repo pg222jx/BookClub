@@ -5,6 +5,7 @@ const Print = require('../view/Print')
 const Database = require('../model/Database') 
 
 class StartMenu {
+    
     constructor() {
         this.database = new Database()
         this.database.connectToDatabase()
@@ -51,7 +52,7 @@ class StartMenu {
             this.printView.printUser(user)
         } else if (answer === 'Reviews') {
             const reviews = await this.database.getUserReviews(username)
-            this.printView.printReviews(reviews)
+            this.printView.printUserReviews(reviews)
         }
     }
 
@@ -59,6 +60,9 @@ class StartMenu {
         if (answer === 'Information') {
             const book = await this.database.getBookInfo(title)
             this.printView.printBook(book)
+        } else if (answer === 'Reviews') {
+            const reviews = await this.database.getBookReviews(title)
+            this.printView.printBookReviews(reviews)
         }
     }
 }
