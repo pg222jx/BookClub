@@ -1,11 +1,12 @@
 const Menu = require('../view/Menu')
 const MemberMenu = require('../view/MemberMenu')
 const BookMenu = require('../view/BookMenu')
+const MemberStatistics = require('../view/MemberStatistics')
 const Print = require('../view/Print')
 const Database = require('../model/Database') 
 
 class StartMenu {
-    
+
     constructor() {
         this.database = new Database()
         this.database.connectToDatabase()
@@ -13,6 +14,7 @@ class StartMenu {
         this.printView = new Print()
         this.memberMenu = new MemberMenu()
         this.bookMenu = new BookMenu()
+        this.memberStatistics = new MemberStatistics()
     }
 
     async run() {
@@ -27,7 +29,7 @@ class StartMenu {
                 const option = await this.memberMenu.getOptions()
                 this.runMemberMenu(option, input)
             } else if (answer === 'Member Statistics') {
-                console.log('MEMBER STATISTICS')
+                await this.memberStatistics.getOptions()
             } else if (answer === 'List all Books') {
                 const titles = await this.database.getAllBookTitles()
                 this.printView.printFromArray(titles)
