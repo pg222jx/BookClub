@@ -55,10 +55,6 @@ class MemberMenu {
 
     let answer = await inquirer.prompt(input)
     return answer.username
-
-    // inquirer.prompt(input).then(answers => {
-    //   this.getOptions(answers.username)
-    // })
   }
 }
 

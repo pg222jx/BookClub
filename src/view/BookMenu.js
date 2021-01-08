@@ -1,6 +1,5 @@
 const inquirer = require('inquirer') 
 const BookController = require('../controller/BookController')
-const StartMenu = require('../controller/StartMenu')
 
 class BookMenu {
   constructor() {
@@ -12,7 +11,7 @@ class BookMenu {
    this.quit = 'Quit'
   }
 
-  getOptions(title) {
+  async getOptions() {
     console.log('Choose an option')
     console.log('_________________________________\n')
     const start = [
@@ -27,21 +26,24 @@ class BookMenu {
       }
     ]
   
-    inquirer.prompt(start).then(answers => {
-      if (answers.menu === this.info) {
-        this.controller.getBookInfo(title)
-      } else if (answers.menu === this.review) {
-        this.controller.getBookReview(title)
-      } else if (answers.menu === this.return) {
-        StartMenu.run()
-      } else if (answers.menu === this.quit) {
-        console.log('\nWelcome back!\n')
-        process.exit(0)
-      }
-    })
+    let answer = await inquirer.prompt(start)
+    return answer.menu
+    
+    // inquirer.prompt(start).then(answers => {
+    //   if (answers.menu === this.info) {
+    //     this.controller.getBookInfo(title)
+    //   } else if (answers.menu === this.review) {
+    //     this.controller.getBookReview(title)
+    //   } else if (answers.menu === this.return) {
+    //     StartMenu.run()
+    //   } else if (answers.menu === this.quit) {
+    //     console.log('\nWelcome back!\n')
+    //     process.exit(0)
+    //   }
+    // })
   }
 
-  getInput() {
+  async getInput() {
     const input = [
       {
         type: 'input',
@@ -50,9 +52,8 @@ class BookMenu {
       }
     ]
 
-    inquirer.prompt(input).then(answers => {
-      this.getOptions(answers.title)
-    })
+    let answer = await inquirer.prompt(input)
+      return answer.title
   }
 }
 

@@ -11,11 +11,11 @@ class Print {
     // }
 
     printUser(user) {
-        console.log('Age: ' + user.age + ' Gender: ' + user.gender)
+        console.log('Age: ' + user.age + ',' + ' Gender: ' + user.gender)
     }
 
     printBook(book) {
-        console.log()
+        console.log('Author: ' + book.author + ',' + ' Publisher: ' + book.publisher + ',' + ' Year: ' + book.year)
     }
 
     printExitMessage() {
@@ -24,5 +24,5 @@ class Print {
     
 }
 
-
+// Exports
 module.exports = Print

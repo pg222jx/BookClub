@@ -44,7 +44,6 @@ class Database {
 
     return usernames
   }
-
   
   async getUserInfo(username) {
 
@@ -77,10 +76,14 @@ class Database {
   async getBookInfo(title) {
     const result = await this.doQuery("SELECT * FROM book")
 
-    let book
+    let book = {}
     result.forEach(element => {
       if (element.title === title) {
-        book = 'Author:', element.author + ',', 'Publisher:', element.publisher + ',', 'Year:', element.year
+        book = {
+          author: element.author,
+          publisher: element.publisher,
+          year: element.year
+        }
       }
     })
 

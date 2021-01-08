@@ -31,9 +31,9 @@ class StartMenu {
                 const titles = await this.database.getAllBookTitles()
                 this.printView.printFromArray(titles)
             } else if (answer === 'Book Information') {
-                const input = this.bookMenu.getInput()
-                const info = await this.database.getBookInfo(input)
-                this.printView.printSingleValue(info)
+                const input = await this.bookMenu.getInput()
+                const option = await this.bookMenu.getOptions()
+                this.runBookMenu(option, input)
             } else if (answer === 'Book Statistics') {
                 console.log('Book Statistics')
             } else if (answer === 'Quit') {
@@ -51,8 +51,14 @@ class StartMenu {
             this.printView.printUser(user)
         }
     }
-}
 
+    async runBookMenu(answer, title) {
+        if (answer === 'Information') {
+            const book = await this.database.getBookInfo(title)
+            this.printView.printBook(book)
+        }
+    }
+}
 
 // Exports
 module.exports = StartMenu
