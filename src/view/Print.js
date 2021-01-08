@@ -34,6 +34,10 @@ class Print {
         console.log(count)
     }
 
+    reviewedBooks(list) {
+        console.log('Title: ' + list.title + ', ' + 'Average Score: ' + list.avgScore + ', ' + 'Number of Reviews: ' + list.reviewsAmount)
+    }
+
     highestAvgScore(book) {
         console.log('Title: ' + book.title + ', ' + 'Average Score: ' + book.avgScore)
     }

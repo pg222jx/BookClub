@@ -125,7 +125,6 @@ class Database {
     return reviews
   }
 
-
   async getBookInfo(title) {
     const result = await this.doQuery("SELECT * FROM book")
 
@@ -153,6 +152,21 @@ class Database {
     const result = await this.doQuery("SELECT * FROM member WHERE gender = 'male'") 
 
     return result.length
+  }
+
+  async getReviewedBooks() {
+    const result = await this.doQuery("SELECT title, (sum(score)/COUNT(*)) AS avgScore, COUNT(*) AS reviewsAmount FROM review GROUP BY title")
+
+    let books = []
+    result.forEach(element => {
+      books.push({
+        title: element.title,
+        avgScore: element.avgScore,
+        reviewsAmount: element.reviewsAmount
+      })
+    })
+
+   return books
   }
 
   async getPopularBookAvgScore() {

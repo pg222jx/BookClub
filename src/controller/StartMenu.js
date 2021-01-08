@@ -93,7 +93,12 @@ class StartMenu {
     }
 
     async runBookStatistics(option) {
-        if (option === 'Most popular book by average score') {
+        if (option === 'List of reviewed books') {
+            const list = await this.database.getReviewedBooks()
+            for (let i = 0; i < list.length;i++) {
+                this.print.reviewedBooks(list[i])
+            }
+        } else if (option === 'Most popular book by average score') {
             const book = await this.database.getPopularBookAvgScore()
             this.print.highestAvgScore(book)
         } else if (option === 'Book read most times') {

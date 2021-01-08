@@ -6,11 +6,10 @@ class BookStatistics {
   constructor() {
    this.controller = new BookController()
 
+   this.reviewedBooks = 'List of reviewed books'
    this.avgScore = 'Most popular book by average score'
    this.mostRead = 'Book read most times'
    this.highestTotScore = 'Book with highest total score'
-   this.popularFemales = 'Most popular book according to females'
-   this.popularMales = 'Most popular book according to males'
    this.return = 'Return'
    this.quit = 'Quit'
   }
@@ -23,7 +22,7 @@ class BookStatistics {
         type: 'list',
         name: 'menu',
         message: 'Menu',
-        choices: [this.avgScore, this.mostRead, this.highestTotScore, this.popularFemales, this.popularMales, this.return, this.quit],
+        choices: [this.reviewedBooks, this.avgScore, this.mostRead, this.highestTotScore, this.return, this.quit],
         filter: function (val) {
           return val
         }
