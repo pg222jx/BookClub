@@ -83,13 +83,15 @@ class StartMenu {
     }
 
     async runMemberStatistics(option) {
+        let gender
         if (option === 'How many members are females?') {
-            const countFemales = await this.database.getFemaleMembers()
-            this.print.members(countFemales)
+            gender = 'female'
         } else if (option === 'How many members are males?') {
-            const countMales = await this.database.getMaleMembers()
-            this.print.members(countMales)
+            gender = 'male'
         }
+
+        const count = await this.database.countMembers(gender)
+        this.print.members(count)
     }
 
     async runBookStatistics(option) {
