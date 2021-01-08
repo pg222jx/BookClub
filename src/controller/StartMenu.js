@@ -83,6 +83,9 @@ class StartMenu {
         if (option === 'How many members are females?') {
             const countFemales = await this.database.getFemaleMembers()
             this.printView.printMembers(countFemales)
+        } else if (option === 'How many members are males?') {
+            const countMales = await this.database.getMaleMembers()
+            this.printView.printMembers(countMales)
         }
     }
 }

@@ -148,6 +148,12 @@ class Database {
 
     return result.length
   }
+
+  async getMaleMembers() {
+    const result = await this.doQuery("SELECT * FROM member WHERE gender = 'male'") 
+
+    return result.length
+  }
 }
 
 // Exports
