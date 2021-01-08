@@ -38,7 +38,6 @@ class Database {
     const result = await this.doQuery("SELECT username FROM member")
 
     let usernames = []
-
     result.forEach(element => {
             usernames.push(element.username)
     })
@@ -46,11 +45,25 @@ class Database {
     return usernames
   }
 
+  
+  async getUserInfo(username) {
+
+    const result = await this.doQuery("SELECT * FROM member")
+
+    let user
+    result.forEach(element => {
+      if (element.username === username) {
+        user = 'Age:', element.age + ',', 'Gender:', element.gender
+      }
+    })
+
+    return user
+  }
+
   async getAllBookTitles() {
     const result = await this.doQuery("SELECT title FROM book")
 
     let titles = []
-
     result.forEach(element => {
             titles.push(element.title)
     })
@@ -58,17 +71,18 @@ class Database {
     return titles
   }
 
+  async getBookInfo(title) {
+    const result = await this.doQuery("SELECT * FROM book")
 
-
-  getUserInfo(username) {
-    this.con.query("SELECT * FROM member", function (err, result) {
-      if (err) throw err
-        result.forEach(element => {
-          if (element.username === username) {
-            console.log('Age:', element.age + ',', 'Gender:', element.gender)
-          }
-      })
+    let book
+    result.forEach(element => {
+      if (element.title === title) {
+        book = 'Author:', element.author + ',', 'Publisher:', element.publisher + ',', 'Year:', element.year
+      }
     })
+
+    return book
+
   }
 
   getUserReview(username) {
@@ -79,17 +93,6 @@ class Database {
             console.log('Title:', element.title + ',', 'Author:', element.author + ',', 'Score:', element.score + ',', 'Times Read:', element.timesRead)
           }
         })
-    })
-  }
-
-  getBookInfo(title) {
-    this.con.query("SELECT * FROM book", function (err, result) {
-      if (err) throw err
-        result.forEach(element => {
-          if (element.title === title) {
-            console.log('Author:', element.author + ',', 'Publisher:', element.publisher + ',', 'Year:', element.year)
-          }
-      })
     })
   }
 

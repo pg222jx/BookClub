@@ -1,16 +1,19 @@
 class Print {
 
-    printUsernames(usernames) {
-        usernames.forEach(element => {
+    printFromArray(array) {
+        array.forEach(element => {
             console.log(element)
         })
+    }
+
+    printSingleValue(info) {
+        console.log(info)
+    }
+
+    printExitMessage() {
+        console.log('\nWelcome back!\n')
     }
     
-    printBookTitles(titles) {
-        titles.forEach(element => {
-            console.log(element)
-        })
-    }
 }
 
 
