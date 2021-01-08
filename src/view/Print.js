@@ -33,6 +33,10 @@ class Print {
     printMembers(members) {
         console.log(members)
     }
+
+    printBook(book) {
+        console.log('Title: ' + book.title + ', ' + 'Average Score: ' + book.avgScore)
+    }
 }
 
 // Exports

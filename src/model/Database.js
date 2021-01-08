@@ -154,6 +154,20 @@ class Database {
 
     return result.length
   }
+
+  async getPopularBookAvgScore() {
+    const result = await this.doQuery("SELECT title, (sum(score)/COUNT(*)) AS avgScore FROM review GROUP BY title ORDER BY avgScore DESC LIMIT 1;")
+
+    let book = {}
+    result.forEach(element => {
+        book = {
+          title: element.title,
+          avgScore: element.avgScore
+        }
+      })
+
+    return book
+  }
 }
 
 // Exports

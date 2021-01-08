@@ -2,6 +2,7 @@ const Menu = require('../view/Menu')
 const MemberMenu = require('../view/MemberMenu')
 const BookMenu = require('../view/BookMenu')
 const MemberStatistics = require('../view/MemberStatistics')
+const BookStatistics = require('../view/BookStatistics')
 const Print = require('../view/Print')
 const Database = require('../model/Database') 
 
@@ -15,6 +16,7 @@ class StartMenu {
         this.memberMenu = new MemberMenu()
         this.bookMenu = new BookMenu()
         this.memberStatistics = new MemberStatistics()
+        this.bookStatistics = new BookStatistics()
     }
 
     async run() {
@@ -39,7 +41,8 @@ class StartMenu {
                 const option = await this.bookMenu.getOptions()
                 this.runBookMenu(option, input)
             } else if (answer === 'Book Statistics') {
-                console.log('Book Statistics')
+                const option = await this.bookStatistics.getOptions()
+                this.runBookStatistics(option)
             } else if (answer === 'Quit') {
                 this.printView.printExitMessage()
                 process.exit(0)
@@ -86,6 +89,13 @@ class StartMenu {
         } else if (option === 'How many members are males?') {
             const countMales = await this.database.getMaleMembers()
             this.printView.printMembers(countMales)
+        }
+    }
+
+    async runBookStatistics(option) {
+        if (option === 'Most popular book by average score') {
+            const popBookAvgScore = await this.database.getPopularBookAvgScore()
+            this.printView.printBook(popBookAvgScore)
         }
     }
 }
