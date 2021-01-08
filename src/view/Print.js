@@ -29,6 +29,10 @@ class Print {
     printExitMessage() {
         console.log('\nWelcome back!\n')
     } 
+
+    printMembers(members) {
+        console.log(members)
+    }
 }
 
 // Exports

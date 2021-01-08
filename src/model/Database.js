@@ -2,7 +2,7 @@ const mysql = require('mysql')
 require('dotenv').config()
 
 class Database {
-  
+
   constructor() {
     this.con = undefined
   }
@@ -123,6 +123,30 @@ class Database {
     })
 
     return reviews
+  }
+
+
+  async getBookInfo(title) {
+    const result = await this.doQuery("SELECT * FROM book")
+
+    let book = {}
+    result.forEach(element => {
+      if (element.title === title) {
+        book = {
+          author: element.author,
+          publisher: element.publisher,
+          year: element.year
+        }
+      }
+    })
+
+    return book
+  }
+
+  async getFemaleMembers() {
+    const result = await this.doQuery("SELECT * FROM member WHERE gender = 'female'") 
+
+    return result.length
   }
 }
 

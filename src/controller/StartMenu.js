@@ -29,7 +29,8 @@ class StartMenu {
                 const option = await this.memberMenu.getOptions()
                 this.runMemberMenu(option, input)
             } else if (answer === 'Member Statistics') {
-                await this.memberStatistics.getOptions()
+                const option = await this.memberStatistics.getOptions()
+                this.runMemberStatistics(option)
             } else if (answer === 'List all Books') {
                 const titles = await this.database.getAllBookTitles()
                 this.printView.printFromArray(titles)
@@ -76,6 +77,13 @@ class StartMenu {
             this.printView.printExitMessage()
             process.exit(0)
         } 
+    }
+
+    async runMemberStatistics(option) {
+        if (option === 'How many members are females?') {
+            const countFemales = await this.database.getFemaleMembers()
+            this.printView.printMembers(countFemales)
+        }
     }
 }
 
