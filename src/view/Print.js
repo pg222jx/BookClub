@@ -1,40 +1,40 @@
 class Print {
 
-    printFromArray(array) {
+    fromArray(array) {
         array.forEach(element => {
             console.log(element)
         })
     }
 
-    printUser(user) {
+    memberInfo(user) {
         console.log('Age: ' + user.age + ',' + ' Gender: ' + user.gender)
     }
 
-    printBook(book) {
+    bookInfo(book) {
         console.log('Author: ' + book.author + ',' + ' Publisher: ' + book.publisher + ',' + ' Year: ' + book.year)
     }
 
-    printUserReviews(reviews) {
+    userReviews(reviews) {
         reviews.forEach(review => {
             console.log('Title: ' + review.title + ',' + ' Author: ' + review.author + ',' + ' Score: ' + review.score + ',' + ' Times Read: ' + review.timesRead)
         })
     }
 
-    printBookReviews(reviews) {
+    bookReviews(reviews) {
         reviews.forEach(review => {
             console.log('Username: ' + review.username + ',' + ' Score: ' + review.score + ',' + ' Times Read: ' + review.timesRead)
         })
     }
 
-    printExitMessage() {
+    exitMessage() {
         console.log('\nWelcome back!\n')
     } 
 
-    printMembers(members) {
-        console.log(members)
+    members(count) {
+        console.log(count)
     }
 
-    printBook(book) {
+    popBookAvgScore(book) {
         console.log('Title: ' + book.title + ', ' + 'Average Score: ' + book.avgScore)
     }
 }

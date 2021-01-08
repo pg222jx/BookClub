@@ -12,7 +12,7 @@ class StartMenu {
         this.database = new Database()
         this.database.connectToDatabase()
         this.menuView = new Menu()
-        this.printView = new Print()
+        this.print = new Print()
         this.memberMenu = new MemberMenu()
         this.bookMenu = new BookMenu()
         this.memberStatistics = new MemberStatistics()
@@ -25,7 +25,7 @@ class StartMenu {
 
             if (answer === 'List all Members') {
                 const usernames = await this.database.getAllUsernames()
-                this.printView.printFromArray(usernames)
+                this.print.fromArray(usernames)
             } else if (answer === 'Member Information') {
                 const input = await this.memberMenu.getInput()
                 const option = await this.memberMenu.getOptions()
@@ -35,7 +35,7 @@ class StartMenu {
                 this.runMemberStatistics(option)
             } else if (answer === 'List all Books') {
                 const titles = await this.database.getAllBookTitles()
-                this.printView.printFromArray(titles)
+                this.print.fromArray(titles)
             } else if (answer === 'Book Information') {
                 const input = await this.bookMenu.getInput()
                 const option = await this.bookMenu.getOptions()
@@ -44,7 +44,7 @@ class StartMenu {
                 const option = await this.bookStatistics.getOptions()
                 this.runBookStatistics(option)
             } else if (answer === 'Quit') {
-                this.printView.printExitMessage()
+                this.print.exitMessage()
                 process.exit(0)
             } 
         } catch (e) {
@@ -55,14 +55,14 @@ class StartMenu {
     async runMemberMenu(answer, username) {
         if (answer === 'Information') {
             const user = await this.database.getUserInfo(username)
-            this.printView.printUser(user)
+            this.print.memberInfo(user)
         } else if (answer === 'Reviews') {
             const reviews = await this.database.getUserReviews(username)
-            this.printView.printUserReviews(reviews)
+            this.print.userReviews(reviews)
         } else if (answer === 'Return') {
             this.run()
         } else if (answer === 'Quit') {
-            this.printView.printExitMessage()
+            this.print.exitMessage()
             process.exit(0)
         } 
     }
@@ -70,14 +70,14 @@ class StartMenu {
     async runBookMenu(answer, title) {
         if (answer === 'Information') {
             const book = await this.database.getBookInfo(title)
-            this.printView.printBook(book)
+            this.print.bookInfo(book)
         } else if (answer === 'Reviews') {
             const reviews = await this.database.getBookReviews(title)
-            this.printView.printBookReviews(reviews)
+            this.print.bookReviews(reviews)
         } else if (answer === 'Return') {
             this.run()
         } else if (answer === 'Quit') {
-            this.printView.printExitMessage()
+            this.print.exitMessage()
             process.exit(0)
         } 
     }
@@ -85,17 +85,17 @@ class StartMenu {
     async runMemberStatistics(option) {
         if (option === 'How many members are females?') {
             const countFemales = await this.database.getFemaleMembers()
-            this.printView.printMembers(countFemales)
+            this.print.members(countFemales)
         } else if (option === 'How many members are males?') {
             const countMales = await this.database.getMaleMembers()
-            this.printView.printMembers(countMales)
+            this.print.members(countMales)
         }
     }
 
     async runBookStatistics(option) {
         if (option === 'Most popular book by average score') {
-            const popBookAvgScore = await this.database.getPopularBookAvgScore()
-            this.printView.printBook(popBookAvgScore)
+            const book = await this.database.getPopularBookAvgScore()
+            this.print.popBookAvgScore(book)
         }
     }
 }
