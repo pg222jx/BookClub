@@ -17,11 +17,11 @@ class StartMenu {
             if (answer === 'List all Books') {
                 const titles = await this.database.getAllBookTitles()
            
-                titles.forEach(element => {
-                    console.log(element)
-                 })
+                // titles.forEach(element => {
+                //     console.log(element)
+                //  })
 
-                // this.printView.printBookTitles(titles)
+                this.printView.printBookTitles(titles)
                 
             }
         } catch (e) {
