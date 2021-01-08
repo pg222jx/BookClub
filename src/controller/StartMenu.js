@@ -22,9 +22,9 @@ class StartMenu {
                 const usernames = await this.database.getAllUsernames()
                 this.printView.printFromArray(usernames)
             } else if (answer === 'Member Information') {
-                const input = this.memberMenu.getInput()
-                const info = await this.database.getUserInfo(input)
-                this.printView.printSingleValue(info)
+                const input = await this.memberMenu.getInput()
+                const option = await this.memberMenu.getOptions()
+                this.runMemberMenu(option, input)
             } else if (answer === 'Member Statistics') {
                 console.log('MEMBER STATISTICS')
             } else if (answer === 'List all Books') {
@@ -43,7 +43,13 @@ class StartMenu {
         } catch (e) {
             console.log(e)
         }
+    }
 
+    async runMemberMenu(answer, username) {
+        if (answer === 'Information') {
+            const user = await this.database.getUserInfo(username)
+            this.printView.printUser(user)
+        }
     }
 }
 

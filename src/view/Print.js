@@ -6,8 +6,16 @@ class Print {
         })
     }
 
-    printSingleValue(info) {
-        console.log(info)
+    // printSingleValue(info) {
+    //     console.log(info)
+    // }
+
+    printUser(user) {
+        console.log('Age: ' + user.age + ' Gender: ' + user.gender)
+    }
+
+    printBook(book) {
+        console.log()
     }
 
     printExitMessage() {

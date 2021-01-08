@@ -50,10 +50,13 @@ class Database {
 
     const result = await this.doQuery("SELECT * FROM member")
 
-    let user
+    let user = {}
     result.forEach(element => {
       if (element.username === username) {
-        user = 'Age:', element.age + ',', 'Gender:', element.gender
+        user = {
+          age: element.age,
+          gender: element.gender
+        }
       }
     })
 
