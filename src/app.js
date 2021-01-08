@@ -1,2 +1,3 @@
 const StartMenu = require('./controller/StartMenu')
-StartMenu.run()
+startMenu = new StartMenu()
+startMenu.run()

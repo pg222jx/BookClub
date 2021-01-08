@@ -53,9 +53,15 @@ class Database {
   getAllBookTitles() {
     this.con.query("SELECT title FROM book", function (err, result) {
       if (err) throw err
+
+      let titles = []
       result.forEach(element => {
-          console.log(element.title)
+          titles.push(element.title)
       })
+
+  
+
+      return titles
   })
   }
 
