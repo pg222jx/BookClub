@@ -96,6 +96,9 @@ class StartMenu {
         if (option === 'Most popular book by average score') {
             const book = await this.database.getPopularBookAvgScore()
             this.print.popBookAvgScore(book)
+        } else if (option === 'Book read most times') {
+            const book = await this.database.getMostReadBook()
+            this.print.mostReadBook(book)
         }
     }
 }

@@ -37,6 +37,10 @@ class Print {
     popBookAvgScore(book) {
         console.log('Title: ' + book.title + ', ' + 'Average Score: ' + book.avgScore)
     }
+
+    mostReadBook(book) {
+        console.log('Title: ' + book.title + ', ' + 'Times Read: ' + book.timesRead)
+    }
 }
 
 // Exports

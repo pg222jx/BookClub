@@ -156,13 +156,27 @@ class Database {
   }
 
   async getPopularBookAvgScore() {
-    const result = await this.doQuery("SELECT title, (sum(score)/COUNT(*)) AS avgScore FROM review GROUP BY title ORDER BY avgScore DESC LIMIT 1;")
+    const result = await this.doQuery("SELECT title, (sum(score)/COUNT(*)) AS avgScore FROM review GROUP BY title ORDER BY avgScore DESC LIMIT 1")
 
     let book = {}
     result.forEach(element => {
         book = {
           title: element.title,
           avgScore: element.avgScore
+        }
+      })
+
+    return book
+  }
+
+  async getMostReadBook() {
+    const result = await this.doQuery("SELECT DISTINCT book.title, review.timesRead FROM book INNER JOIN review WHERE book.title = review.title ORDER BY timesRead DESC LIMIT 1")
+
+    let book = {}
+    result.forEach(element => {
+        book = {
+          title: element.title,
+          timesRead: element.timesRead
         }
       })
 
