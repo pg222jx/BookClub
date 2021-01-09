@@ -91,7 +91,7 @@ class StartMenu {
         }
 
         const count = await this.database.countMembers(gender)
-        this.print.members(count)
+        this.print.singleValue(count)
     }
 
     async runBookStatistics(option) {
@@ -109,6 +109,15 @@ class StartMenu {
         } else if (option === 'Book with highest total score') {
             const book = await this.database.getHighestTotalScore()
             this.print.highestTotalScore(book)
+        } else if (option === 'Search times read by book title') {
+            const title = await this.bookMenu.getInput()
+            const sum = await this.database.getTimesRead(title)
+            this.print.singleValue(sum)
+        } else if (option === 'How many users under { age } has read { book title }?') {
+            const age = await this.bookMenu.getAgeInput()
+            const title = await this.bookMenu.getTitleInput()
+            const result = await this.database.getAgeTitleStatistics(age, title)
+            this.print.singleValue(result)
         }
     }
 }

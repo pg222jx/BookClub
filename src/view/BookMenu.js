@@ -43,6 +43,32 @@ class BookMenu {
     let answer = await inquirer.prompt(input)
       return answer.title
   }
+
+  async getAgeInput() {
+    const input = [
+      {
+        type: 'input',
+        name: 'age',
+        message: 'Under what age limit?'
+      }
+    ]
+
+    let answer = await inquirer.prompt(input)
+      return answer.age
+  }
+
+  async getTitleInput() {
+    const input = [
+      {
+        type: 'input',
+        name: 'title',
+        message: 'Which title?'
+      }
+    ]
+
+    let answer = await inquirer.prompt(input)
+      return answer.title
+  }
 }
 
 // Exports

@@ -117,21 +117,6 @@ class Database {
     return reviews
   }
 
-  async getBookInfo(title) {
-    const result = await this.doQuery("SELECT * FROM book WHERE title='" + title + "'")
-
-    let book = {}
-    result.forEach(element => {
-        book = {
-          author: element.author,
-          publisher: element.publisher,
-          year: element.year
-        }
-    })
-
-    return book
-  }
-
   async countMembers(gender) {
     const result = await this.doQuery("SELECT COUNT(*) AS count FROM member WHERE gender='" + gender + "'") 
 
@@ -173,6 +158,8 @@ class Database {
   }
 
   async getMostReadBook() {
+    // Funkar lika bra med:
+    // SELECT DISTINCT review.title, review.timesRead FROM review ORDER BY timesRead DESC LIMIT 1 ?
     const result = await this.doQuery("SELECT DISTINCT book.title, review.timesRead FROM book INNER JOIN review WHERE book.title = review.title ORDER BY timesRead DESC LIMIT 1")
 
     let book = {}
@@ -198,6 +185,32 @@ class Database {
       })
 
     return book
+  }
+
+  async getTimesRead(title) {
+    const result = await this.doQuery("SELECT sum(timesRead) AS sum FROM review WHERE title='" + title + "'")
+
+    let times = {}
+    result.forEach(element => {
+        times = {
+          sum: element.sum
+        }
+      })
+
+    return times.sum
+  }
+
+  async getAgeTitleStatistics(age, title) {
+    const result = await this.doQuery("SELECT DISTINCT count(review.username) AS sum FROM review INNER JOIN member WHERE review.username = member.username AND age<" + age +  " AND review.title='" + title + "'")
+  
+    let count = {}
+    result.forEach(element => {
+        count = {
+          sum: element.sum
+        }
+      })
+
+    return count.sum
   }
 }
 

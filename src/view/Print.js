@@ -6,6 +6,10 @@ class Print {
         })
     }
 
+    singleValue(value) {
+        console.log(value)
+    }
+
     memberInfo(user) {
         console.log('Age: ' + user.age + ',' + ' Gender: ' + user.gender)
     }
@@ -29,10 +33,6 @@ class Print {
     exitMessage() {
         console.log('\nWelcome back!\n')
     } 
-
-    members(count) {
-        console.log(count)
-    }
 
     reviewedBooks(list) {
         console.log('Title: ' + list.title + ', ' + 'Average Score: ' + list.avgScore + ', ' + 'Number of Reviews: ' + list.reviewsAmount)

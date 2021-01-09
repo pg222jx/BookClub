@@ -10,6 +10,8 @@ class BookStatistics {
    this.avgScore = 'Most popular book by average score'
    this.mostRead = 'Book read most times'
    this.highestTotScore = 'Book with highest total score'
+   this.timesRead = 'Search times read by book title'
+   this.agesTitleStatistics = 'How many users under { age } has read { book title }?'
    this.return = 'Return'
    this.quit = 'Quit'
   }
@@ -22,7 +24,7 @@ class BookStatistics {
         type: 'list',
         name: 'menu',
         message: 'Menu',
-        choices: [this.reviewedBooks, this.avgScore, this.mostRead, this.highestTotScore, this.return, this.quit],
+        choices: [this.reviewedBooks, this.avgScore, this.mostRead, this.highestTotScore, this.timesRead, this.agesTitleStatistics, this.return, this.quit],
         filter: function (val) {
           return val
         }
