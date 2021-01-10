@@ -42,7 +42,7 @@ class Print {
         console.log('Title: ' + book.title + ', ' + 'Average Score: ' + book.avgScore)
     }
 
-    list(info) {
+    authorList(info) {
         console.log('Author: ' + info.author + ', ' + 'Times Read: ' + info.timesRead)
     }
 
@@ -52,6 +52,10 @@ class Print {
 
     highestTotalScore(book) {
         console.log('Title: ' + book.title + ', ' + 'Total Score: ' + book.score)
+    }
+
+    statistics(title) {
+        console.log('Average Score: ' + title.avgScore + ', ' + 'Times Read: ' + title.timesRead)
     }
 }
 

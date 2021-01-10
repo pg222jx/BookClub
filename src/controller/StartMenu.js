@@ -23,32 +23,59 @@ class StartMenu {
         try {
             const answer = await this.menuView.getOptions()
 
-            if (answer === 'List all Members') {
-                const usernames = await this.database.getAllUsernames()
-                this.print.fromArray(usernames)
+            if (answer === 'Book Information') {
+                const input = await this.bookMenu.getInput()
+                const option = await this.bookMenu.getOptions()
+                this.runBookMenu(option, input)
             } else if (answer === 'Member Information') {
                 const input = await this.memberMenu.getInput()
                 const option = await this.memberMenu.getOptions()
                 this.runMemberMenu(option, input)
-            } else if (answer === 'Member Statistics') {
-                const option = await this.memberStatistics.getOptions()
-                this.runMemberStatistics(option)
-            } else if (answer === 'List all Books') {
-                const titles = await this.database.getAllBookTitles()
-                this.print.fromArray(titles)
-            } else if (answer === 'Book Information') {
-                const input = await this.bookMenu.getInput()
-                const option = await this.bookMenu.getOptions()
-                this.runBookMenu(option, input)
-            } else if (answer === 'Book Statistics') {
-                const option = await this.bookStatistics.getOptions()
-                this.runBookStatistics(option)
+            } else if (answer === 'Statistics') {
+                const option = await this.menuView.getStatisticsOptions()
+                this.runStatistics(option)
+            } else if (answer === 'Lists') {
+                const option = await this.menuView.getListOptions()
+                this.runLists(option)
             } else if (answer === 'Quit') {
                 this.print.exitMessage()
                 process.exit(0)
             } 
         } catch (e) {
             console.log(e)
+        }
+    }
+
+    async runStatistics(option) {
+        if (option === 'Book Statistics') {
+            const option = await this.bookStatistics.getOptions()
+            this.runBookStatistics(option)
+        } else if (option === 'Member Statistics') {
+            const option = await this.memberStatistics.getOptions()
+            this.runMemberStatistics(option)
+        }
+    }
+
+    async runLists(option) {
+        if (option === 'List all Authors') {
+            const authors = await this.database.getAllAuthors()
+            this.print.fromArray(authors)
+        } else if (option === 'List Authors and Times Read') {
+            const info = await this.database.getAuthorsAndTimesRead()
+            for (let i = 0; i < info.length; i++) {
+                this.print.authorList(info[i])
+            }
+        } else if (option === 'List all Book Titles') {
+            const titles = await this.database.getAllBookTitles()
+            this.print.fromArray(titles)
+        } else if (option === 'List Reviewed Books') {
+            const books = await this.database.getReviewedBooks()
+            for (let i = 0; i < books.length;i++) {
+                this.print.reviewedBooks(books[i])
+            }
+        } else if (option === 'List all Members') {
+            const usernames = await this.database.getAllUsernames()
+            this.print.fromArray(usernames)
         }
     }
 
@@ -84,60 +111,60 @@ class StartMenu {
 
     async runMemberStatistics(option) {
         let gender
-        if (option === 'How many members are females?') {
+        let result
+        if (option === 'How Many Members are Females?') {
             gender = 'female'
-        } else if (option === 'How many members are males?') {
+            result = await this.database.countMembers(gender)
+        } else if (option === 'How Many Members are Males?') {
             gender = 'male'
+            result = await this.database.countMembers(gender)
+        } else if (option === 'How Many Members Under { choose age } Has Read { choose title }?') {
+            const age = await this.memberMenu.getAgeInput()
+            const title = await this.bookMenu.getTitleInput()
+            result = await this.database.getAgeTitleStatistics(age, title)
+     
+        } else if (option === 'How Many { choose gender } Members Has Read a Book Written Before { choose year }?') {
+            const gender = await this.memberMenu.getGenderOptions()
+            const year = await this.bookMenu.getYearInput()
+            result = await this.database.getGenderYearStatistics(gender, year)
         }
-
-        const count = await this.database.countMembers(gender)
-        this.print.singleValue(count)
+        
+        this.print.singleValue(result)
     }
 
     async runBookStatistics(option) {
-        if (option === 'List of reviewed books') {
-            const list = await this.database.getReviewedBooks()
-            for (let i = 0; i < list.length;i++) {
-                this.print.reviewedBooks(list[i])
-            }
-        } else if (option === 'Most popular book by average score') {
-            const book = await this.database.getPopularBookAvgScore()
-            this.print.highestAvgScore(book)
-        } else if (option === 'List all authors and their total times read') {
-            const authorTimesRead = await this.database.getAuthorsAndTimesRead()
-            for (let i = 0; i < authorTimesRead.length; i++) {
-                this.print.list(authorTimesRead[i])
-            }
-        } else if (option === 'Book read most times') {
-            const book = await this.database.getMostReadBook()
-            this.print.mostReadBook(book)
-        } else if (option === 'Book with highest total score') {
-            const book = await this.database.getHighestTotalScore()
-            this.print.highestTotalScore(book)
-        } else if (option === 'Search for author to see book titles') {
+        if (option === 'Most Popular Book') {
+            const option = await this.bookMenu.getPopularOptions()
+            this.runPopularOptions(option)
+        } else if (option === 'Search Book Titles by Author') {
             const author = await this.bookMenu.getAuthorInput() 
             const titles = await this.database.getTitles(author)
             for (let i = 0; i < titles.length; i++) {
                 this.print.singleValue(titles[i].title)
             }
-        } else if (option === 'Search times read by book title') {
+        } else if (option === 'Search Statistics by Book Title') {
             const title = await this.bookMenu.getInput()
-            const sum = await this.database.getTimesRead(title)
-            this.print.singleValue(sum)
-        }else if (option === 'Search average score by book title') {
-            const title = await this.bookMenu.getInput()
-            const avgScore = await this.database.getAvgScore(title)
-            this.print.singleValue(avgScore)
-        } else if (option === 'How many users under { age } has read { book title }?') {
-            const age = await this.memberMenu.getAgeInput()
-            const title = await this.bookMenu.getTitleInput()
-            const result = await this.database.getAgeTitleStatistics(age, title)
-            this.print.singleValue(result)
-        } else if (option === 'How many { gender } members has read a book written before { year }?') {
-            const gender = await this.memberMenu.getGenderOptions()
-            const year = await this.bookMenu.getYearInput()
-            const result = await this.database.getGenderYearStatistics(gender, year)
-            this.print.singleValue(result)
+            const info = await this.database.getStatistics(title)
+            this.print.statistics(info)
+        } else if (option === 'List all authors and their total times read') {
+            const info = await this.database.getAuthorsAndTimesRead()
+            for (let i = 0; i < info.length; i++) {
+                this.print.authorList(info[i])
+            }
+        } 
+    }
+
+    async runPopularOptions(option) {
+        if (option === 'Most Popular Book Seen by Times Read') {
+            // FUNGERAR EJ
+            const book = await this.database.getMostReadBook()
+            this.print.mostReadBook(book)
+        } else if (option === 'Most Popular Book Seen by Total Score') {
+            const book = await this.database.getHighestTotalScore()
+            this.print.highestTotalScore(book)
+        } else if (option === 'Most Popular Book Seen by Average Score') {
+            const book = await this.database.getPopularBookAvgScore()
+            this.print.highestAvgScore(book)
         }
     }
 }

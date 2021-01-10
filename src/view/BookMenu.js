@@ -82,6 +82,24 @@ class BookMenu {
     let answer = await inquirer.prompt(input)
       return answer.author
   }
+
+  async getPopularOptions() {
+    
+    const options = [
+      {
+        type: 'list',
+        name: 'options',
+        message: 'Please choose an option',
+        choices: ['Most Popular Book Seen by Times Read', 'Most Popular Book Seen by Total Score', 'Most Popular Book Seen by Average Score'],
+        filter: function (val) {
+          return val
+        }
+      }
+    ]
+  
+    let answer = await inquirer.prompt(options)
+    return answer.options
+  }
 }
 
 // Exports

@@ -60,6 +60,17 @@ class Database {
     return user
   }
 
+  async getAllAuthors() {
+    const result = await this.doQuery("SELECT author FROM book")
+
+    let authors = []
+    result.forEach(element => {
+            authors.push(element.author)
+    })
+
+    return authors
+  }
+
   async getAllBookTitles() {
     const result = await this.doQuery("SELECT title FROM book")
 
@@ -174,7 +185,7 @@ class Database {
   async getMostReadBook() {
     // Funkar lika bra med:
     // SELECT DISTINCT review.title, review.timesRead FROM review ORDER BY timesRead DESC LIMIT 1 ?
-    const result = await this.doQuery("SELECT DISTINCT book.title, review.timesRead FROM book INNER JOIN review WHERE book.title = review.title ORDER BY timesRead DESC LIMIT 1")
+    const result = await this.doQuery("SELECT book.title, review.timesRead FROM book INNER JOIN review WHERE book.title = review.title ORDER BY timesRead")
 
     let book = {}
     result.forEach(element => {
@@ -210,8 +221,22 @@ class Database {
         title: element.title
       })
     })
-    
+
     return titles
+  }
+
+  async getStatistics(title) {
+    const result = await this.doQuery("SELECT DISTINCT (sum(score)/COUNT(*)) AS avgScore, sum(timesRead) AS timesRead FROM review WHERE review.title='" + title + "'")
+    
+    let statistics = {}
+    result.forEach(element => {
+        statistics = {
+          avgScore: element.avgScore,
+          timesRead: element.timesRead
+        }
+      })
+
+    return statistics
   }
 
   async getTimesRead(title) {
