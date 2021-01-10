@@ -25,12 +25,20 @@ class StartMenu {
 
             if (answer === 'Book Information') {
                 const input = await this.bookMenu.getInput()
+                if (this.inputChecker(input)) {
+                    this.run()
+                } else {
                 const option = await this.bookMenu.getOptions()
                 this.runBookMenu(option, input)
+                }
             } else if (answer === 'Member Information') {
                 const input = await this.memberMenu.getInput()
-                const option = await this.memberMenu.getOptions()
-                this.runMemberMenu(option, input)
+                if (this.inputChecker(input)) {
+                    this.run()
+                } else {
+                    const option = await this.memberMenu.getOptions()
+                    this.runMemberMenu(option, input)
+                }
             } else if (answer === 'Statistics') {
                 const option = await this.menuView.getStatisticsOptions()
                 this.runStatistics(option)
@@ -156,7 +164,6 @@ class StartMenu {
 
     async runPopularOptions(option) {
         if (option === 'Most Popular Book Seen by Times Read') {
-            // FUNGERAR EJ
             const book = await this.database.getMostReadBook()
             this.print.mostReadBook(book)
         } else if (option === 'Most Popular Book Seen by Total Score') {
@@ -165,6 +172,13 @@ class StartMenu {
         } else if (option === 'Most Popular Book Seen by Average Score') {
             const book = await this.database.getPopularBookAvgScore()
             this.print.highestAvgScore(book)
+        }
+    }
+
+    inputChecker(input) {
+        if (input === '') {
+            this.print.notValidInput()
+            return true
         }
     }
 }

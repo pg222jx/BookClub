@@ -13,8 +13,6 @@ class MemberMenu {
   }
 
   async getOptions() {
-    console.log('Choose an option')
-    console.log('_________________________________\n')
     const start = [
       {
         type: 'list',

@@ -1,5 +1,10 @@
 class Print {
 
+    welcomeMessage() {
+        console.log('\nWelcome to Book Club!')
+        console.log('_________________________________\n')
+    }
+
     fromArray(array) {
         array.forEach(element => {
             console.log(element)
@@ -56,6 +61,10 @@ class Print {
 
     statistics(title) {
         console.log('Average Score: ' + title.avgScore + ', ' + 'Times Read: ' + title.timesRead)
+    }
+
+    notValidInput() {
+        console.log('\nNot a valid input, please try again...\n')
     }
 }
 

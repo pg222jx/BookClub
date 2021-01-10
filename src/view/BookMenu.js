@@ -13,8 +13,6 @@ class BookMenu {
   }
 
   async getOptions() {
-    console.log('Choose an option')
-    console.log('_________________________________\n')
     const start = [
       {
         type: 'list',
@@ -84,7 +82,6 @@ class BookMenu {
   }
 
   async getPopularOptions() {
-    
     const options = [
       {
         type: 'list',

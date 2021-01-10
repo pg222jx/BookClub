@@ -11,8 +11,6 @@ class Menu {
   }
 
   async getOptions() {
-    console.log('Welcome to Book Club!')
-    console.log('_________________________________\n')
     const start = [
       {
         type: 'list',
