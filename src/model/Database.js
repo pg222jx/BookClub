@@ -183,9 +183,7 @@ class Database {
   }
 
   async getMostReadBook() {
-    // Funkar lika bra med:
-    // SELECT DISTINCT review.title, review.timesRead FROM review ORDER BY timesRead DESC LIMIT 1 ?
-    const result = await this.doQuery("SELECT book.title, review.timesRead FROM book INNER JOIN review WHERE book.title = review.title ORDER BY timesRead")
+    const result = await this.doQuery("SELECT book.title, sum(review.timesRead) AS timesRead FROM book INNER JOIN review WHERE book.title = review.title GROUP BY book.title ORDER BY timesRead DESC LIMIT 1")
 
     let book = {}
     result.forEach(element => {
