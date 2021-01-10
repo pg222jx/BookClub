@@ -44,19 +44,6 @@ class BookMenu {
       return answer.title
   }
 
-  async getAgeInput() {
-    const input = [
-      {
-        type: 'input',
-        name: 'age',
-        message: 'Under what age limit?'
-      }
-    ]
-
-    let answer = await inquirer.prompt(input)
-      return answer.age
-  }
-
   async getTitleInput() {
     const input = [
       {
@@ -68,6 +55,32 @@ class BookMenu {
 
     let answer = await inquirer.prompt(input)
       return answer.title
+  }
+
+  async getYearInput() {
+    const input = [
+      {
+        type: 'input',
+        name: 'year',
+        message: 'Before which year?'
+      }
+    ]
+
+    let answer = await inquirer.prompt(input)
+      return answer.year
+  }
+
+  async getAuthorInput() {
+    const input = [
+      {
+        type: 'input',
+        name: 'author',
+        message: 'Which author?'
+      }
+    ]
+
+    let answer = await inquirer.prompt(input)
+      return answer.author
   }
 }
 

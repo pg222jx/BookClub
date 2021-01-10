@@ -21,7 +21,7 @@ class Database {
   }
 
   async doQuery(queryToGet) {
-    let prom = new Promise((resolve, reject) => {
+    let prom = new Promise((resolve) => {
       this.con.query(queryToGet, (err, result) => {
         if (err) throw err
         resolve(result)
@@ -157,6 +157,20 @@ class Database {
     return book
   }
 
+  async getAuthorsAndTimesRead() {
+    const result = await this.doQuery("SELECT book.author, sum(review.timesRead) AS timesRead FROM book INNER JOIN review WHERE book.title = review.title GROUP BY book.author ASC")
+    
+    let authors = []
+    result.forEach(element => {
+      authors.push({
+        author: element.author,
+        timesRead: element.timesRead
+      })
+    })
+
+   return authors
+  }
+
   async getMostReadBook() {
     // Funkar lika bra med:
     // SELECT DISTINCT review.title, review.timesRead FROM review ORDER BY timesRead DESC LIMIT 1 ?
@@ -187,6 +201,19 @@ class Database {
     return book
   }
 
+  async getTitles(author) {
+    const result = await this.doQuery("SELECT title FROM book WHERE author='" + author + "'")
+
+    let titles = []
+    result.forEach(element => {
+      titles.push({
+        title: element.title
+      })
+    })
+    
+    return titles
+  }
+
   async getTimesRead(title) {
     const result = await this.doQuery("SELECT sum(timesRead) AS sum FROM review WHERE title='" + title + "'")
 
@@ -200,9 +227,37 @@ class Database {
     return times.sum
   }
 
+  async getAvgScore(title) {
+    const result = await this.doQuery("SELECT (sum(score)/COUNT(*)) AS score FROM review WHERE title='" + title + "'")
+    
+    let average = {}
+    result.forEach(element => {
+        average = {
+          score: element.score
+        }
+      })
+
+    return average.score
+  }
+
   async getAgeTitleStatistics(age, title) {
     const result = await this.doQuery("SELECT DISTINCT count(review.username) AS sum FROM review INNER JOIN member WHERE review.username = member.username AND age<" + age +  " AND review.title='" + title + "'")
   
+    let count = {}
+    result.forEach(element => {
+        count = {
+          sum: element.sum
+        }
+      })
+
+    return count.sum
+  }
+
+  async getGenderYearStatistics(gender, year) {
+    await this.doQuery("DROP VIEW IF EXISTS newView")
+    await this.doQuery("CREATE VIEW newView AS SELECT member.username, member.gender, review.title, review.score, book.author, book.year FROM member, review, book WHERE member.username = review.username AND review.title = book.title")
+    const result = await this.doQuery("SELECT DISTINCT count(*) AS sum FROM newView WHERE gender='" + gender + "' AND year <" + year)
+    
     let count = {}
     result.forEach(element => {
         count = {

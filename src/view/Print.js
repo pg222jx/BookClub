@@ -42,7 +42,11 @@ class Print {
         console.log('Title: ' + book.title + ', ' + 'Average Score: ' + book.avgScore)
     }
 
-    mostRead(book) {
+    list(info) {
+        console.log('Author: ' + info.author + ', ' + 'Times Read: ' + info.timesRead)
+    }
+
+    mostReadBook(book) {
         console.log('Title: ' + book.title + ', ' + 'Times Read: ' + book.timesRead)
     }
 

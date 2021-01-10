@@ -103,20 +103,40 @@ class StartMenu {
         } else if (option === 'Most popular book by average score') {
             const book = await this.database.getPopularBookAvgScore()
             this.print.highestAvgScore(book)
+        } else if (option === 'List all authors and their total times read') {
+            const authorTimesRead = await this.database.getAuthorsAndTimesRead()
+            for (let i = 0; i < authorTimesRead.length; i++) {
+                this.print.list(authorTimesRead[i])
+            }
         } else if (option === 'Book read most times') {
             const book = await this.database.getMostReadBook()
-            this.print.mostRead(book)
+            this.print.mostReadBook(book)
         } else if (option === 'Book with highest total score') {
             const book = await this.database.getHighestTotalScore()
             this.print.highestTotalScore(book)
+        } else if (option === 'Search for author to see book titles') {
+            const author = await this.bookMenu.getAuthorInput() 
+            const titles = await this.database.getTitles(author)
+            for (let i = 0; i < titles.length; i++) {
+                this.print.singleValue(titles[i].title)
+            }
         } else if (option === 'Search times read by book title') {
             const title = await this.bookMenu.getInput()
             const sum = await this.database.getTimesRead(title)
             this.print.singleValue(sum)
+        }else if (option === 'Search average score by book title') {
+            const title = await this.bookMenu.getInput()
+            const avgScore = await this.database.getAvgScore(title)
+            this.print.singleValue(avgScore)
         } else if (option === 'How many users under { age } has read { book title }?') {
-            const age = await this.bookMenu.getAgeInput()
+            const age = await this.memberMenu.getAgeInput()
             const title = await this.bookMenu.getTitleInput()
             const result = await this.database.getAgeTitleStatistics(age, title)
+            this.print.singleValue(result)
+        } else if (option === 'How many { gender } members has read a book written before { year }?') {
+            const gender = await this.memberMenu.getGenderOptions()
+            const year = await this.bookMenu.getYearInput()
+            const result = await this.database.getGenderYearStatistics(gender, year)
             this.print.singleValue(result)
         }
     }
