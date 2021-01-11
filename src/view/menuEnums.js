@@ -86,6 +86,17 @@ const bookAuthor = {
 	MESSAGE: 'Which author?',
 }
 
+const memberName = {
+	NAME: 'username',
+	MESSAGE: 'Which member do you want to search for?',
+}
+
+
+const memberAge = {
+	NAME: 'age',
+	MESSAGE: 'Under what age limit?',
+}
+
 const inquirerType = {
 	LIST: 'list',
 	INPUT: 'input'
@@ -103,4 +114,6 @@ exports.popularMenu = popularMenu
 exports.bookTitle = bookTitle
 exports.bookYear = bookYear
 exports.bookAuthor = bookAuthor
+exports.memberName = memberName
+exports.memberAge = memberAge
 exports.inquirerType = inquirerType

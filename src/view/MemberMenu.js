@@ -34,8 +34,8 @@ class MemberMenu {
     const input = [
       {
         type: menuEnums.inquirerType.INPUT,
-        name: 'username',
-        message: 'Which member do you want to search for?'
+        name: menuEnums.memberName.NAME,
+        message: menuEnums.memberName.MESSAGE
       }
     ]
 
@@ -52,8 +52,8 @@ class MemberMenu {
     const input = [
       {
         type: menuEnums.inquirerType.INPUT,
-        name: 'age',
-        message: 'Under what age limit?'
+        name: menuEnums.memberAge.NAME,
+        message: menuEnums.memberAge.MESSAGE
       }
     ]
 
