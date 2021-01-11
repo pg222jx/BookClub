@@ -49,11 +49,17 @@ class StatisticMenu {
             startApp.startUp()
         } else if (option === menuEnums.memberStatMenu.AGETITLE) {
             const age = await this.memberMenu.getAgeInput()
-            const title = await this.bookMenu.getTitleInput()
-            result = await this.database.getAgeTitleStatistics(age, title)
-            this.print.clearConsole()
-            this.print.singleValue(result)
-            startApp.startUp()
+
+            if (this.isValidAge(age)) {
+
+                const title = await this.bookMenu.getTitleInput()
+                result = await this.database.getAgeTitleStatistics(age, title)
+                this.print.clearConsole()
+                this.print.singleValue(result)
+                startApp.startUp()
+            } else {
+                startApp.startUp()
+            }
         } else if (option === menuEnums.memberStatMenu.GENDERYEAR) {
             const gender = await this.memberMenu.getGenderOptions()
             const year = await this.bookMenu.getYearInput()
@@ -114,6 +120,15 @@ class StatisticMenu {
             startApp.startUp()
         } else if (option === menuEnums.popularMenu.RETURN) {
             startApp.startUp()
+        }
+    }
+
+    isValidAge(age) {
+        if (isNaN(age) || age === '' || age < 0 || age > 100) {
+            this.print.notValidInput()
+            return false
+        } else {
+            return true
         }
     }
 }
