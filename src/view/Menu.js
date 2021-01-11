@@ -3,6 +3,11 @@ const menuEnums = require('./menuEnums')
 
 class Menu {
 
+  /**
+   * Prints the start menu to the console.
+   * 
+   * @returns {string} - The users input from the menu.
+   */
   async getOptions() {
     const start = [
       {
@@ -21,6 +26,11 @@ class Menu {
     return answer.menu
   }
 
+  /**
+   * Prints the statistics menu to the console.
+   * 
+   * @returns {string} - The users input from the menu.
+   */
   async getStatisticsOptions() {
     const choices = [
       {
@@ -39,6 +49,11 @@ class Menu {
     return answer.choices
   }
 
+  /**
+   * Prints the list menu to the console.
+   * 
+   * @returns {string} - The users input from the menu.
+   */
   async getListOptions() {
     const choices = [
       {

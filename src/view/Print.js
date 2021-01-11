@@ -1,3 +1,7 @@
+/**
+ * Print messages to the console.
+ */
+
 class Print {
 
     welcomeMessage() {

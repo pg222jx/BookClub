@@ -1,3 +1,7 @@
+/**
+ * Java Script Enums from menus.
+ */
+
 const startMenu = {
 	NAME: 'menu',
 	MESSAGE: 'Menu',
