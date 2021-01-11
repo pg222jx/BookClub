@@ -3,6 +3,11 @@ const menuEnums = require('./menuEnums')
 
 class MemberMenu {
 
+    /**
+   * Prints the member menu to the console.
+   * 
+   * @returns {string} - The users input from the menu.
+   */
   async getOptions() {
     const start = [
       {
@@ -20,6 +25,11 @@ class MemberMenu {
     return answer.menu
   }
 
+  /**
+   * Tells user to write a username.
+   * 
+   * @returns {string} - The users input from the menu.
+   */
   async getInput() {
     const input = [
       {
@@ -33,6 +43,11 @@ class MemberMenu {
     return answer.username
   }
 
+  /**
+   * Tells user to write an age.
+   * 
+   * @returns {string} - The users input from the menu.
+   */
   async getAgeInput() {
     const input = [
       {
@@ -46,6 +61,11 @@ class MemberMenu {
       return answer.age
   }
 
+  /**
+   * Prints the gender menu to the console.
+   * 
+   * @returns {string} - The users input from the menu.
+   */
   async getGenderOptions() {
     const choose = [
       {

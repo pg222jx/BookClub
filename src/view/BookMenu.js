@@ -3,6 +3,11 @@ const menuEnums = require('./menuEnums')
 
 class BookMenu {
   
+  /**
+   * Prints the book menu to the console.
+   * 
+   * @returns {string} - The users input from the menu.
+   */
   async getOptions() {
     const start = [
       {
@@ -20,6 +25,12 @@ class BookMenu {
     return answer.menu
   }
 
+  
+  /**
+   * Tells user to write a book title.
+   * 
+   * @returns {string} - The users input from the menu.
+   */
   async getTitleInput() {
     const input = [
       {
@@ -33,6 +44,11 @@ class BookMenu {
       return answer.title
   }
 
+  /**
+   * Tells user to write a year.
+   * 
+   * @returns {string} - The users input from the menu.
+   */
   async getYearInput() {
     const input = [
       {
@@ -46,6 +62,11 @@ class BookMenu {
       return answer.year
   }
 
+  /**
+   * Tells user to write an author.
+   * 
+   * @returns {string} - The users input from the menu.
+   */
   async getAuthorInput() {
     const input = [
       {
@@ -59,6 +80,11 @@ class BookMenu {
       return answer.author
   }
 
+  /**
+   * Prints the most popular book menu to the console.
+   * 
+   * @returns {string} - The users input from the menu.
+   */
   async getPopularOptions() {
     const options = [
       {

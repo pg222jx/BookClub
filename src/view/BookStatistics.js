@@ -2,7 +2,12 @@ const inquirer = require('inquirer')
 const menuEnums = require('./menuEnums') 
 
 class BookStatistics {
-  
+
+  /**
+   * Prints the book statistics menu to the console.
+   * 
+   * @returns {string} - The users input from the menu.
+   */
   async getOptions() {
     const start = [
       {
