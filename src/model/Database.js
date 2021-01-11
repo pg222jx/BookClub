@@ -116,24 +116,23 @@ class Database {
  return authors
 }
 
-
   /**
   * @returns {Array} - Book title and average score of every reviewed book.
   */
-  async getReviewedBooks() {
-    const result = await this.doQuery("SELECT title, (sum(score)/COUNT(*)) AS avgScore, COUNT(*) AS reviewsAmount FROM review GROUP BY title")
+ async getReviewedBooks() {
+  const result = await this.doQuery("SELECT title, (sum(score)/COUNT(*)) AS avgScore, COUNT(*) AS reviewsAmount FROM review GROUP BY title")
 
-    let books = []
-    result.forEach(element => {
-      books.push({
-        title: element.title,
-        avgScore: element.avgScore,
-        reviewsAmount: element.reviewsAmount
-      })
+  let books = []
+  result.forEach(element => {
+    books.push({
+      title: element.title,
+      avgScore: element.avgScore,
+      reviewsAmount: element.reviewsAmount
     })
+  })
 
-   return books
-  }
+ return books
+}
 
   /**
   * @returns {Object} - All usernames in the database.
