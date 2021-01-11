@@ -10,7 +10,6 @@ const InputChecker = require('../model/InputChecker')
 
 
 class StatisticMenu {
-
     constructor() {
         this.database = new Database()
         this.database.connectToDatabase()
@@ -22,6 +21,11 @@ class StatisticMenu {
         this.inputChecker = new InputChecker()
     }
 
+    /**
+    * Handles logic for the statistics submenu
+    *
+    * @param {string} option - Menu option from user.
+    */
     async runStatistics(option) {
         if (option === menuEnums.statisticsMenu.BOOKSTAT) {
             const option = await this.bookStatistics.getOptions()
@@ -34,6 +38,11 @@ class StatisticMenu {
         }
     }
 
+    /**
+    * Handles logic for the member statistics submenu
+    *
+    * @param {string} option - Menu option from user.
+    */
     async runMemberStatistics(option) {
         let gender
         let result
@@ -85,6 +94,11 @@ class StatisticMenu {
         } 
     }
 
+    /**
+    * Handles logic for the book statistics submenu
+    *
+    * @param {string} option - Menu option from user.
+    */
     async runBookStatistics(option) {
         if (option === menuEnums.bookStatMenu.MOSTPOP) {
             const option = await this.bookMenu.getPopularOptions()
@@ -115,6 +129,11 @@ class StatisticMenu {
         } 
     }
 
+        /**
+    * Handles logic for the most popular book submenu
+    *
+    * @param {string} option - Menu option from user.
+    */
     async runPopularOptions(option) {
         if (option === menuEnums.popularMenu.TIMESREAD) {
             const book = await this.database.getMostReadBook()

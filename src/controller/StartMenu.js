@@ -22,6 +22,10 @@ class StartMenu {
         this.inputChecker = new InputChecker()
     }
 
+    /**
+    * Handles logic for the startmenu
+    *
+    */
     async run() {
         try {
             const answer = await this.menuView.getOptions()
@@ -60,6 +64,12 @@ class StartMenu {
         }
     }
 
+    /**
+    * Handles logic for the member submenu
+    *
+    * @param {string} answer - Menu option from user.
+    * @param {string} username - The username the user searches for.
+    */
     async runMemberMenu(answer, username) {
         if (answer === menuEnums.memberAndBookMenu.INFO) {
             const user = await this.database.getUserInfo(username)
@@ -76,6 +86,12 @@ class StartMenu {
         }
     }
 
+    /**
+    * Handles logic for the book submenu
+    *
+    * @param {string} answer - Menu option from user.
+    * @param {string} username - The title the user searches for.
+    */
     async runBookMenu(answer, title) {
         if (answer === menuEnums.memberAndBookMenu.INFO) {
             const book = await this.database.getBookInfo(title)

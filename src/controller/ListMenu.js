@@ -11,6 +11,11 @@ class ListMenu {
         this.print = new Print()
     }
 
+    /**
+     * Logic for List option in start menu.
+     *
+     * @param {string} option - Menu option from user.
+     */
     async runLists(option) {
         if (option === menuEnums.listMenu.AUTHORLIST) {
             const authors = await this.database.getAllAuthors()
@@ -45,7 +50,6 @@ class ListMenu {
             startApp.startUp()
         }
     }
-
 }
 
 // Exports

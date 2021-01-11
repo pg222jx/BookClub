@@ -7,6 +7,9 @@ class Database {
     this.con = undefined
   }
 
+  /**
+  * Creates connection to the mysql database
+  */
   connectToDatabase () {
     this.con = mysql.createConnection({
       host:  process.env.HOST,
@@ -20,8 +23,14 @@ class Database {
       })
   }
 
+  /**
+  * Runs queries on the database.
+  * 
+  * @param {string} queryToGet - The query to use on the databae connection.
+  * @returns - The result from the query.
+  */
   async doQuery(queryToGet) {
-    let prom = new Promise((resolve) => {
+    const prom = new Promise((resolve) => {
       this.con.query(queryToGet, (err, result) => {
         if (err) throw err
         resolve(result)
@@ -35,6 +44,9 @@ class Database {
     return value
   }
 
+  /**
+  * @returns {Object} - All usernames in the database.
+  */
   async getAllUsernames() {
     const result = await this.doQuery("SELECT username FROM member")
 
@@ -46,6 +58,11 @@ class Database {
     return usernames
   }
   
+
+  /**
+  * @param {string} username - Input from user.
+  * @returns {Object} - One specific users age and gender.
+  */
   async getUserInfo(username) {
     const result = await this.doQuery("SELECT * FROM member WHERE username='" + username + "'")
 
@@ -60,6 +77,9 @@ class Database {
     return user
   }
 
+  /**
+  * @returns {Array} - All authors in the database.
+  */
   async getAllAuthors() {
     const result = await this.doQuery("SELECT author FROM book")
 
@@ -71,6 +91,9 @@ class Database {
     return authors
   }
 
+  /**
+  * @returns {Array} - All book titles from the database.
+  */
   async getAllBookTitles() {
     const result = await this.doQuery("SELECT title FROM book")
 
@@ -82,6 +105,10 @@ class Database {
     return titles
   }
 
+  /**
+  * @param {string} title - Input from user.
+  * @returns {Object} - One specific books author, publisher and year.
+  */
   async getBookInfo(title) {
     const result = await this.doQuery("SELECT * FROM book WHERE title='" + title + "'")
 
@@ -97,6 +124,10 @@ class Database {
     return book
   }
 
+  /**
+  * @param {string} username - Input from user.
+  * @returns {Array} - One specific users reviews.
+  */
   async getUserReviews(username) {
     const result = await this.doQuery("SELECT * FROM review WHERE username='" + username + "'")
 
@@ -113,6 +144,10 @@ class Database {
     return reviews
   }
 
+  /**
+  * @param {string} title - Input from user.
+  * @returns {Array} - All reviews made on a specific book.
+  */
   async getBookReviews(title) {
     const result = await this.doQuery("SELECT * FROM review WHERE title='" + title + "'") 
 
@@ -128,6 +163,10 @@ class Database {
     return reviews
   }
 
+  /**
+  * @param {string} gender - Input from user.
+  * @returns {Object} - Amount of members if a specific gender.
+  */
   async countMembers(gender) {
     const result = await this.doQuery("SELECT COUNT(*) AS count FROM member WHERE gender='" + gender + "'") 
 
