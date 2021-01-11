@@ -6,6 +6,7 @@ const BookStatistics = require('../view/BookStatistics')
 const Print = require('../view/Print')
 const menuEnums = require('../view/menuEnums') 
 const Database = require('../model/Database')
+const StatisticMenu = require('./StatisticMenu')
 
 class StartMenu {
 
@@ -18,6 +19,7 @@ class StartMenu {
         this.bookMenu = new BookMenu()
         this.memberStatistics = new MemberStatistics()
         this.bookStatistics = new BookStatistics()
+        this.statisticMenu = new StatisticMenu()
     }
 
     async run() {
@@ -42,8 +44,8 @@ class StartMenu {
                 }
             } else if (answer === menuEnums.startMenu.STATISTICS) {
                 const option = await this.menuView.getStatisticsOptions()
-                this.runStatistics(option)
-            } else if (answer === 'Lists') {
+                this.statisticMenu.runStatistics(option)
+            } else if (answer === menuEnums.startMenu.LISTS) {
                 const option = await this.menuView.getListOptions()
                 this.runLists(option)
             } else if (answer === menuEnums.startMenu.QUIT) {
@@ -55,17 +57,17 @@ class StartMenu {
         }
     }
 
-    async runStatistics(option) {
-        if (option === menuEnums.statisticsMenu.BOOKSTAT) {
-            const option = await this.bookStatistics.getOptions()
-            this.runBookStatistics(option)
-        } else if (option === menuEnums.statisticsMenu.MEMBERSTAT) {
-            const option = await this.memberStatistics.getOptions()
-            this.runMemberStatistics(option)
-        } else if (option === menuEnums.statisticsMenu.RETURN) {
-            this.run()
-        }
-    }
+    // async runStatistics(option) {
+    //     if (option === menuEnums.statisticsMenu.BOOKSTAT) {
+    //         const option = await this.bookStatistics.getOptions()
+    //         this.runBookStatistics(option)
+    //     } else if (option === menuEnums.statisticsMenu.MEMBERSTAT) {
+    //         const option = await this.memberStatistics.getOptions()
+    //         this.runMemberStatistics(option)
+    //     } else if (option === menuEnums.statisticsMenu.RETURN) {
+    //         this.run()
+    //     }
+    // }
 
     async runLists(option) {
         if (option === menuEnums.listMenu.AUTHORLIST) {
