@@ -178,6 +178,9 @@ class Database {
     return count
   }
 
+  /**
+  * @returns {Array} - Book title and average score of every reviewed book.
+  */
   async getReviewedBooks() {
     const result = await this.doQuery("SELECT title, (sum(score)/COUNT(*)) AS avgScore, COUNT(*) AS reviewsAmount FROM review GROUP BY title")
 
@@ -193,6 +196,9 @@ class Database {
    return books
   }
 
+  /**
+  * @returns {Object} - The reviewed book with the highest average score.
+  */
   async getPopularBookAvgScore() {
     const result = await this.doQuery("SELECT title, (sum(score)/COUNT(*)) AS avgScore FROM review GROUP BY title ORDER BY avgScore DESC LIMIT 1")
 
@@ -207,6 +213,9 @@ class Database {
     return book
   }
 
+  /**
+  * @returns {Array} - All authors and how many times all their books have been read.
+  */
   async getAuthorsAndTimesRead() {
     const result = await this.doQuery("SELECT book.author, sum(review.timesRead) AS timesRead FROM book INNER JOIN review WHERE book.title=review.title AND book.author=review.author GROUP BY book.author ASC")
     
@@ -221,6 +230,9 @@ class Database {
    return authors
   }
 
+  /**
+  * @returns {Object} - The book that has been read most times.
+  */
   async getMostReadBook() {
     const result = await this.doQuery("SELECT title, sum(timesRead) AS timesRead FROM review GROUP BY title ORDER BY timesRead DESC LIMIT 1")
 
@@ -235,6 +247,9 @@ class Database {
     return book
   }
 
+  /**
+  * @returns {Object} - The book with the highest total score.
+  */
   async getHighestTotalScore() {
     const result = await this.doQuery("SELECT title, (sum(score)) AS score FROM review GROUP BY title ASC LIMIT 1")
 
@@ -249,6 +264,10 @@ class Database {
     return book
   }
 
+    /**
+  * @param {string} author - Input from user.
+  * @returns {Array} - One specific authors book titles.
+  */
   async getTitles(author) {
     const result = await this.doQuery("SELECT title FROM book WHERE author='" + author + "'")
 
@@ -262,6 +281,10 @@ class Database {
     return titles
   }
 
+  /**
+  * @param {string} title - Input from user.
+  * @returns {Object} - Average score and times read of a specific book title.
+  */
   async getStatistics(title) {
     const result = await this.doQuery("SELECT DISTINCT (sum(score)/COUNT(*)) AS avgScore, sum(timesRead) AS timesRead FROM review WHERE review.title='" + title + "'")
     
@@ -276,6 +299,10 @@ class Database {
     return statistics
   }
 
+  /**
+  * @param {string} title - Input from user.
+  * @returns {Object} - How many times a specific book has been read.
+  */
   async getTimesRead(title) {
     const result = await this.doQuery("SELECT sum(timesRead) AS sum FROM review WHERE title='" + title + "'")
 
@@ -289,6 +316,10 @@ class Database {
     return times.sum
   }
 
+  /**
+  * @param {string} title - Input from user.
+  * @returns {Object} - Average score of a specific book.
+  */
   async getAvgScore(title) {
     const result = await this.doQuery("SELECT (sum(score)/COUNT(*)) AS score FROM review WHERE title='" + title + "'")
     
@@ -302,6 +333,12 @@ class Database {
     return average.score
   }
 
+  
+  /**
+  * @param {string} age - Input from user.
+  * @param {string} title - Input from user.
+  * @returns {Object} - The amount of members with a certain age that have read one specific book.
+  */
   async getAgeTitleStatistics(age, title) {
     const result = await this.doQuery("SELECT DISTINCT count(review.username) AS sum FROM review INNER JOIN member WHERE review.username = member.username AND age<" + age +  " AND review.title='" + title + "'")
   
@@ -315,6 +352,11 @@ class Database {
     return count.sum
   }
 
+  /**
+  * @param {string} gender - Input from user.
+  * @param {string} year - Input from user.
+  * @returns {Object} - The amount of members with a certain gender that have read a book written before a certain year.
+  */
   async getGenderYearStatistics(gender, year) {
     await this.doQuery("DROP VIEW IF EXISTS newView")
     await this.doQuery("CREATE VIEW newView AS SELECT member.username, member.gender, review.title, review.score, book.author, book.year FROM member, review, book WHERE member.username = review.username AND review.title = book.title")
