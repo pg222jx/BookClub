@@ -1,12 +1,11 @@
 const Menu = require('../view/Menu')
 const MemberMenu = require('../view/MemberMenu')
 const BookMenu = require('../view/BookMenu')
-const MemberStatistics = require('../view/MemberStatistics')
-const BookStatistics = require('../view/BookStatistics')
 const Print = require('../view/Print')
 const menuEnums = require('../view/menuEnums') 
 const Database = require('../model/Database')
 const StatisticMenu = require('./StatisticMenu')
+const ListMenu = require('./ListMenu')
 
 class StartMenu {
 
@@ -17,9 +16,8 @@ class StartMenu {
         this.print = new Print()
         this.memberMenu = new MemberMenu()
         this.bookMenu = new BookMenu()
-        this.memberStatistics = new MemberStatistics()
-        this.bookStatistics = new BookStatistics()
         this.statisticMenu = new StatisticMenu()
+        this.ListMenu = new ListMenu()
     }
 
     async run() {
@@ -47,7 +45,7 @@ class StartMenu {
                 this.statisticMenu.runStatistics(option)
             } else if (answer === menuEnums.startMenu.LISTS) {
                 const option = await this.menuView.getListOptions()
-                this.runLists(option)
+                this.ListMenu.runLists(option)
             } else if (answer === menuEnums.startMenu.QUIT) {
                 this.print.exitMessage()
                 process.exit(0)
@@ -57,30 +55,30 @@ class StartMenu {
         }
     }
 
-    async runLists(option) {
-        if (option === menuEnums.listMenu.AUTHORLIST) {
-            const authors = await this.database.getAllAuthors()
-            this.print.fromArray(authors)
-        } else if (option === menuEnums.listMenu.AUTHORTIMESREAD) {
-            const info = await this.database.getAuthorsAndTimesRead()
-            for (let i = 0; i < info.length; i++) {
-                this.print.authorList(info[i])
-            }
-        } else if (option === menuEnums.listMenu.BOOKTITLES) {
-            const titles = await this.database.getAllBookTitles()
-            this.print.fromArray(titles)
-        } else if (option === menuEnums.listMenu.REVIEWEDBOOKS) {
-            const books = await this.database.getReviewedBooks()
-            for (let i = 0; i < books.length;i++) {
-                this.print.reviewedBooks(books[i])
-            }
-        } else if (option === menuEnums.listMenu.MEMBERS) {
-            const usernames = await this.database.getAllUsernames()
-            this.print.fromArray(usernames)
-        } else if (option === menuEnums.listMenu.RETURN) {
-            this.run()
-        }
-    }
+    // async runLists(option) {
+    //     if (option === menuEnums.listMenu.AUTHORLIST) {
+    //         const authors = await this.database.getAllAuthors()
+    //         this.print.fromArray(authors)
+    //     } else if (option === menuEnums.listMenu.AUTHORTIMESREAD) {
+    //         const info = await this.database.getAuthorsAndTimesRead()
+    //         for (let i = 0; i < info.length; i++) {
+    //             this.print.authorList(info[i])
+    //         }
+    //     } else if (option === menuEnums.listMenu.BOOKTITLES) {
+    //         const titles = await this.database.getAllBookTitles()
+    //         this.print.fromArray(titles)
+    //     } else if (option === menuEnums.listMenu.REVIEWEDBOOKS) {
+    //         const books = await this.database.getReviewedBooks()
+    //         for (let i = 0; i < books.length;i++) {
+    //             this.print.reviewedBooks(books[i])
+    //         }
+    //     } else if (option === menuEnums.listMenu.MEMBERS) {
+    //         const usernames = await this.database.getAllUsernames()
+    //         this.print.fromArray(usernames)
+    //     } else if (option === menuEnums.listMenu.RETURN) {
+    //         this.run()
+    //     }
+    // }
 
     async runMemberMenu(answer, username) {
         if (answer === menuEnums.memberAndBookMenu.INFO) {

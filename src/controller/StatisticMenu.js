@@ -88,7 +88,7 @@ class StatisticMenu {
         } else if (option === menuEnums.popularMenu.TOTALSCORE) {
             const book = await this.database.getHighestTotalScore()
             this.print.highestTotalScore(book)
-            this.run()
+            startApp.startUp()
         } else if (option === menuEnums.popularMenu.AVGSCORE) {
             const book = await this.database.getPopularBookAvgScore()
             this.print.highestAvgScore(book)
