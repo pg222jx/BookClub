@@ -1,14 +1,11 @@
 const inquirer = require('inquirer') 
 const MemberController = require('../controller/MemberController')
+const menuEnums = require('./menuEnums') 
 
 class MemberMenu {
 
   constructor() {
    this.controller = new MemberController()
-
-   this.info = 'Information'
-   this.review = 'Reviews'
-   this.return = 'Return'
   }
 
   async getOptions() {
@@ -17,7 +14,7 @@ class MemberMenu {
         type: 'list',
         name: 'menu',
         message: 'Menu',
-        choices: [this.info, this.review, this.return],
+        choices: [menuEnums.memberMenu.INFO, menuEnums.memberMenu.REVIEWS, menuEnums.memberMenu.RETURN],
         filter: function (val) {
           return val
         }
@@ -60,7 +57,7 @@ class MemberMenu {
         type: 'list',
         name: 'gender',
         message: 'Choose gender',
-        choices: ['Female', 'Male'],
+        choices: [menuEnums.genderMenu.FEMALE, menuEnums.genderMenu.MALE],
         filter: function (val) {
           return val
         }

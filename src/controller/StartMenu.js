@@ -93,13 +93,13 @@ class StartMenu {
     }
 
     async runMemberMenu(answer, username) {
-        if (answer === 'Information') {
+        if (answer === menuEnums.memberMenu.INFO) {
             const user = await this.database.getUserInfo(username)
             this.print.memberInfo(user)
-        } else if (answer === 'Reviews') {
+        } else if (answer === menuEnums.memberMenu.REVIEWS) {
             const reviews = await this.database.getUserReviews(username)
             this.print.userReviews(reviews)
-        } else if (answer === 'Return') {
+        } else if (answer === menuEnums.memberMenu.RETURN) {
             this.run()
         }
     }
@@ -119,22 +119,22 @@ class StartMenu {
     async runMemberStatistics(option) {
         let gender
         let result
-        if (option === 'How Many Members are Females?') {
-            gender = 'female'
+        if (option === menuEnums.memberStatMenu.MEMBERFEMALES) {
+            gender = menuEnums.genderMenu.FEMALE
             result = await this.database.countMembers(gender)
-        } else if (option === 'How Many Members are Males?') {
-            gender = 'male'
+        } else if (option === menuEnums.memberStatMenu.MEMBERMALES) {
+            gender = menuEnums.genderMenu.MALE
             result = await this.database.countMembers(gender)
-        } else if (option === 'How Many Members Under { choose age } Has Read { choose title }?') {
+        } else if (option === menuEnums.memberStatMenu.AGETITLE) {
             const age = await this.memberMenu.getAgeInput()
             const title = await this.bookMenu.getTitleInput()
             result = await this.database.getAgeTitleStatistics(age, title)
      
-        } else if (option === 'How Many { choose gender } Members Has Read a Book Written Before { choose year }?') {
+        } else if (option === menuEnums.memberStatMenu.GENDERYEAR) {
             const gender = await this.memberMenu.getGenderOptions()
             const year = await this.bookMenu.getYearInput()
             result = await this.database.getGenderYearStatistics(gender, year)
-        } else if (option === 'Return') {
+        } else if (option === menuEnums.memberStatMenu.RETURN) {
             this.run()
         } 
         

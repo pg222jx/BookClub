@@ -1,16 +1,11 @@
 const inquirer = require('inquirer') 
 const BookController = require('../controller/BookController')
+const menuEnums = require('./menuEnums') 
 
 class MemberStatistics {
   
   constructor() {
    this.controller = new BookController()
-
-   this.memberFemales = 'How Many Members are Females?'
-   this.memberMales = 'How Many Members are Males?'
-   this.agesTitleStatistics = 'How Many Members Under { choose age } Has Read { choose title }?'
-   this.genderYearStatistics = 'How Many { choose gender } Members Has Read a Book Written Before { choose year }?'
-   this.return = 'Return'
   }
 
   async getOptions() {
@@ -19,7 +14,8 @@ class MemberStatistics {
         type: 'list',
         name: 'menu',
         message: 'Menu',
-        choices: [this.memberFemales, this.memberMales, this.agesTitleStatistics, this.genderYearStatistics, this.return],
+        choices: [menuEnums.memberStatMenu.MEMBERFEMALES, menuEnums.memberStatMenu.MEMBERMALES, 
+          menuEnums.memberStatMenu.AGETITLE, menuEnums.memberStatMenu.GENDERYEAR, menuEnums.memberStatMenu.RETURN],
         filter: function (val) {
           return val
         }

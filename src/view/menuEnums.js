@@ -27,7 +27,23 @@ const memberMenu = {
     RETURN: 'Return'
 }
 
+const memberStatMenu = {
+	MEMBERFEMALES: 'How Many Members are Females?',
+	MEMBERMALES: 'How Many Members are Males?',
+	AGETITLE: 'How Many Members Under { choose age } Has Read { choose title }?',
+    GENDERYEAR: 'How Many { choose gender } Members Has Read a Book Written Before { choose year }?',
+    RETURN: 'Return'
+}
+
+const genderMenu = {
+	FEMALE: 'Female',
+	MALE: 'Male',
+}
+
 // EXPORTS
 exports.startMenu = startMenu
 exports.statisticsMenu = statisticsMenu
 exports.listMenu = listMenu
+exports.memberMenu = memberMenu
+exports.memberStatMenu = memberStatMenu
+exports.genderMenu = genderMenu
