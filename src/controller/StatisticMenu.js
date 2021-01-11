@@ -38,23 +38,24 @@ class StatisticMenu {
         if (option === menuEnums.memberStatMenu.MEMBERFEMALES) {
             gender = menuEnums.genderMenu.FEMALE
             result = await this.database.countMembers(gender)
+            this.print.singleValue(result)
         } else if (option === menuEnums.memberStatMenu.MEMBERMALES) {
             gender = menuEnums.genderMenu.MALE
             result = await this.database.countMembers(gender)
+            this.print.singleValue(result)
         } else if (option === menuEnums.memberStatMenu.AGETITLE) {
             const age = await this.memberMenu.getAgeInput()
             const title = await this.bookMenu.getTitleInput()
             result = await this.database.getAgeTitleStatistics(age, title)
-     
+            this.print.singleValue(result)
         } else if (option === menuEnums.memberStatMenu.GENDERYEAR) {
             const gender = await this.memberMenu.getGenderOptions()
             const year = await this.bookMenu.getYearInput()
             result = await this.database.getGenderYearStatistics(gender, year)
+            this.print.singleValue(result)
         } else if (option === menuEnums.memberStatMenu.RETURN) {
             startApp.startUp()
         } 
-        
-        this.print.singleValue(result)
     }
 
     async runBookStatistics(option) {
