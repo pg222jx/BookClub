@@ -169,7 +169,7 @@ class Database {
   }
 
   async getAuthorsAndTimesRead() {
-    const result = await this.doQuery("SELECT book.author, sum(review.timesRead) AS timesRead FROM book INNER JOIN review WHERE book.title = review.title AND book.author= review.author GROUP BY book.author ASC")
+    const result = await this.doQuery("SELECT book.author, sum(review.timesRead) AS timesRead FROM book INNER JOIN review WHERE book.title=review.title AND book.author=review.author GROUP BY book.author ASC")
     
     let authors = []
     result.forEach(element => {
