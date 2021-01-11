@@ -33,7 +33,7 @@ class Menu {
         type: 'list',
         name: 'choices',
         message: 'Please make a choice',
-        choices: ['Book Statistics', 'Member Statistics'],
+        choices: ['Book Statistics', 'Member Statistics', 'Return'],
         filter: function (val) {
           return val
         }
@@ -50,7 +50,7 @@ class Menu {
         type: 'list',
         name: 'choices',
         message: 'Please make a choice',
-        choices: ['List all Authors', 'List Authors and Times Read', 'List all Book Titles', 'List Reviewed Books','List all Members'],
+        choices: ['List all Authors', 'List Authors and Times Read', 'List all Book Titles', 'List Reviewed Books','List all Members', 'Return'],
         filter: function (val) {
           return val
         }

@@ -11,7 +11,6 @@ class MemberStatistics {
    this.agesTitleStatistics = 'How Many Members Under { choose age } Has Read { choose title }?'
    this.genderYearStatistics = 'How Many { choose gender } Members Has Read a Book Written Before { choose year }?'
    this.return = 'Return'
-   this.quit = 'Quit'
   }
 
   async getOptions() {
@@ -20,7 +19,7 @@ class MemberStatistics {
         type: 'list',
         name: 'menu',
         message: 'Menu',
-        choices: [this.memberFemales, this.memberMales, this.agesTitleStatistics, this.genderYearStatistics, this.return, this.quit],
+        choices: [this.memberFemales, this.memberMales, this.agesTitleStatistics, this.genderYearStatistics, this.return],
         filter: function (val) {
           return val
         }

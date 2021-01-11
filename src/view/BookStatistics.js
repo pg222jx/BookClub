@@ -11,7 +11,6 @@ class BookStatistics {
    this.searchTitle = 'Search Statistics by Book Title'
    this.authorListTimesRead = 'List all authors and their total times read'
    this.return = 'Return'
-   this.quit = 'Quit'
   }
 
   async getOptions() {
@@ -20,7 +19,7 @@ class BookStatistics {
         type: 'list',
         name: 'menu',
         message: 'Menu',
-        choices: [this.mostPopularBook, this.searchAuthor, this.searchTitle, this.authorListTimesRead, this.return, this.quit],
+        choices: [this.mostPopularBook, this.searchAuthor, this.searchTitle, this.authorListTimesRead, this.return],
         filter: function (val) {
           return val
         }

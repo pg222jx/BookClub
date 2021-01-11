@@ -61,6 +61,8 @@ class StartMenu {
         } else if (option === 'Member Statistics') {
             const option = await this.memberStatistics.getOptions()
             this.runMemberStatistics(option)
+        } else if (option === 'Return') {
+            this.run()
         }
     }
 
@@ -84,6 +86,8 @@ class StartMenu {
         } else if (option === 'List all Members') {
             const usernames = await this.database.getAllUsernames()
             this.print.fromArray(usernames)
+        } else if (option === 'Return') {
+            this.run()
         }
     }
 
@@ -96,10 +100,7 @@ class StartMenu {
             this.print.userReviews(reviews)
         } else if (answer === 'Return') {
             this.run()
-        } else if (answer === 'Quit') {
-            this.print.exitMessage()
-            process.exit(0)
-        } 
+        }
     }
 
     async runBookMenu(answer, title) {
@@ -111,10 +112,7 @@ class StartMenu {
             this.print.bookReviews(reviews)
         } else if (answer === 'Return') {
             this.run()
-        } else if (answer === 'Quit') {
-            this.print.exitMessage()
-            process.exit(0)
-        } 
+        }
     }
 
     async runMemberStatistics(option) {
@@ -135,7 +133,9 @@ class StartMenu {
             const gender = await this.memberMenu.getGenderOptions()
             const year = await this.bookMenu.getYearInput()
             result = await this.database.getGenderYearStatistics(gender, year)
-        }
+        } else if (option === 'Return') {
+            this.run()
+        } 
         
         this.print.singleValue(result)
     }
@@ -159,6 +159,8 @@ class StartMenu {
             for (let i = 0; i < info.length; i++) {
                 this.print.authorList(info[i])
             }
+        } else if (option === 'Return') {
+            this.run()
         } 
     }
 
@@ -169,9 +171,11 @@ class StartMenu {
         } else if (option === 'Most Popular Book Seen by Total Score') {
             const book = await this.database.getHighestTotalScore()
             this.print.highestTotalScore(book)
+            this.run()
         } else if (option === 'Most Popular Book Seen by Average Score') {
             const book = await this.database.getPopularBookAvgScore()
             this.print.highestAvgScore(book)
+            this.run()
         }
     }
 

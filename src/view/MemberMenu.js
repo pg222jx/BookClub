@@ -9,7 +9,6 @@ class MemberMenu {
    this.info = 'Information'
    this.review = 'Reviews'
    this.return = 'Return'
-   this.quit = 'Quit'
   }
 
   async getOptions() {
@@ -18,7 +17,7 @@ class MemberMenu {
         type: 'list',
         name: 'menu',
         message: 'Menu',
-        choices: [this.info, this.review, this.return, this.quit],
+        choices: [this.info, this.review, this.return],
         filter: function (val) {
           return val
         }
