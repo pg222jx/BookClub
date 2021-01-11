@@ -35,7 +35,8 @@ class StartMenu {
                 }
             } else if (answer === menuEnums.startMenu.MEMBERINFO) {
                 const input = await this.memberMenu.getInput()
-                if (this.inputChecker(input)) {
+                const members = await this.database.getAllUsernames()
+                if (this.inputChecker(input, members)) {
                     this.run()
                 } else {
                     const option = await this.memberMenu.getOptions()
@@ -93,12 +94,11 @@ class StartMenu {
         for (let prop in menu) {
             menu[prop] = menu[prop].toLowerCase()
         }
-
         input = input.toLowerCase()
+
         if(Object.values(menu).includes(input)) {
            return false
         } else {
-            console.log(Object.values(menu))
             this.print.notValidInput()
             return true
         }
