@@ -71,6 +71,21 @@ const popularMenu = {
     RETURN: 'Return'
 }
 
+const bookTitle = {
+	NAME: 'title',
+	MESSAGE: 'Which book title do you want to search for?',
+}
+
+const bookYear = {
+	NAME: 'year',
+	MESSAGE: 'Before which year?',
+}
+
+const bookAuthor = {
+	NAME: 'author',
+	MESSAGE: 'Which author?',
+}
+
 const inquirerType = {
 	LIST: 'list',
 	INPUT: 'input'
@@ -85,4 +100,7 @@ exports.memberStatMenu = memberStatMenu
 exports.genderMenu = genderMenu
 exports.bookStatMenu = bookStatMenu
 exports.popularMenu = popularMenu
+exports.bookTitle = bookTitle
+exports.bookYear = bookYear
+exports.bookAuthor = bookAuthor
 exports.inquirerType = inquirerType

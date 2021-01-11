@@ -20,25 +20,12 @@ class BookMenu {
     return answer.menu
   }
 
-  async getInput() {
-    const input = [
-      {
-        type: menuEnums.inquirerType.INPUT,
-        name: 'title',
-        message: 'Which book title do you want to search for?'
-      }
-    ]
-
-    let answer = await inquirer.prompt(input)
-      return answer.title
-  }
-
   async getTitleInput() {
     const input = [
       {
         type: menuEnums.inquirerType.INPUT,
-        name: 'title',
-        message: 'Which title?'
+        name: menuEnums.bookTitle.NAME,
+        message: menuEnums.bookTitle.MESSAGE
       }
     ]
 
@@ -50,8 +37,8 @@ class BookMenu {
     const input = [
       {
         type: menuEnums.inquirerType.INPUT,
-        name: 'year',
-        message: 'Before which year?'
+        name: menuEnums.bookYear.NAME,
+        message: menuEnums.bookYear.MESSAGE
       }
     ]
 
@@ -63,8 +50,8 @@ class BookMenu {
     const input = [
       {
         type: menuEnums.inquirerType.INPUT,
-        name: 'author',
-        message: 'Which author?'
+        name: menuEnums.bookAuthor.NAME,
+        message: menuEnums.bookAuthor.MESSAGE
       }
     ]
 

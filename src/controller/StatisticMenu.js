@@ -98,7 +98,7 @@ class StatisticMenu {
             }
             startApp.startUp()
         } else if (option === menuEnums.bookStatMenu.SEARCHTITLE) {
-            const title = await this.bookMenu.getInput()
+            const title = await this.bookMenu.getTitleInput()
             const info = await this.database.getStatistics(title)
             this.print.clearConsole()
             this.print.statistics(info)

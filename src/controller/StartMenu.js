@@ -27,7 +27,7 @@ class StartMenu {
             const answer = await this.menuView.getOptions()
 
             if (answer === menuEnums.startMenu.BOOKINFO) {
-                const input = await this.bookMenu.getInput()
+                const input = await this.bookMenu.getTitleInput()
                 const titles = await this.database.getAllBookTitles()
                 if (this.inputChecker.isValidInput(input, titles)) {
                     const option = await this.bookMenu.getOptions()
