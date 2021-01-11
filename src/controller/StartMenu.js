@@ -4,7 +4,8 @@ const BookMenu = require('../view/BookMenu')
 const MemberStatistics = require('../view/MemberStatistics')
 const BookStatistics = require('../view/BookStatistics')
 const Print = require('../view/Print')
-const Database = require('../model/Database') 
+const menuEnums = require('../view/menuEnums') 
+const Database = require('../model/Database')
 
 class StartMenu {
 
@@ -23,7 +24,7 @@ class StartMenu {
         try {
             const answer = await this.menuView.getOptions()
 
-            if (answer === 'Book Information') {
+            if (answer === menuEnums.startMenu.BOOKINFO) {
                 const input = await this.bookMenu.getInput()
                 if (this.inputChecker(input)) {
                     this.run()
@@ -31,7 +32,7 @@ class StartMenu {
                 const option = await this.bookMenu.getOptions()
                 this.runBookMenu(option, input)
                 }
-            } else if (answer === 'Member Information') {
+            } else if (answer === menuEnums.startMenu.MEMBERINFO) {
                 const input = await this.memberMenu.getInput()
                 if (this.inputChecker(input)) {
                     this.run()
@@ -39,13 +40,13 @@ class StartMenu {
                     const option = await this.memberMenu.getOptions()
                     this.runMemberMenu(option, input)
                 }
-            } else if (answer === 'Statistics') {
+            } else if (answer === menuEnums.startMenu.STATISTICS) {
                 const option = await this.menuView.getStatisticsOptions()
                 this.runStatistics(option)
             } else if (answer === 'Lists') {
                 const option = await this.menuView.getListOptions()
                 this.runLists(option)
-            } else if (answer === 'Quit') {
+            } else if (answer === menuEnums.startMenu.QUIT) {
                 this.print.exitMessage()
                 process.exit(0)
             } 
@@ -55,38 +56,38 @@ class StartMenu {
     }
 
     async runStatistics(option) {
-        if (option === 'Book Statistics') {
+        if (option === menuEnums.statisticsMenu.BOOKSTAT) {
             const option = await this.bookStatistics.getOptions()
             this.runBookStatistics(option)
-        } else if (option === 'Member Statistics') {
+        } else if (option === menuEnums.statisticsMenu.MEMBERSTAT) {
             const option = await this.memberStatistics.getOptions()
             this.runMemberStatistics(option)
-        } else if (option === 'Return') {
+        } else if (option === menuEnums.statisticsMenu.RETURN) {
             this.run()
         }
     }
 
     async runLists(option) {
-        if (option === 'List all Authors') {
+        if (option === menuEnums.listMenu.AUTHORLIST) {
             const authors = await this.database.getAllAuthors()
             this.print.fromArray(authors)
-        } else if (option === 'List Authors and Times Read') {
+        } else if (option === menuEnums.listMenu.AUTHORTIMESREAD) {
             const info = await this.database.getAuthorsAndTimesRead()
             for (let i = 0; i < info.length; i++) {
                 this.print.authorList(info[i])
             }
-        } else if (option === 'List all Book Titles') {
+        } else if (option === menuEnums.listMenu.BOOKTITLES) {
             const titles = await this.database.getAllBookTitles()
             this.print.fromArray(titles)
-        } else if (option === 'List Reviewed Books') {
+        } else if (option === menuEnums.listMenu.REVIEWEDBOOKS) {
             const books = await this.database.getReviewedBooks()
             for (let i = 0; i < books.length;i++) {
                 this.print.reviewedBooks(books[i])
             }
-        } else if (option === 'List all Members') {
+        } else if (option === menuEnums.listMenu.MEMBERS) {
             const usernames = await this.database.getAllUsernames()
             this.print.fromArray(usernames)
-        } else if (option === 'Return') {
+        } else if (option === menuEnums.listMenu.RETURN) {
             this.run()
         }
     }
