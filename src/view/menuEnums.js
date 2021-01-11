@@ -40,6 +40,14 @@ const genderMenu = {
 	MALE: 'Male',
 }
 
+const bookStatMenu = {
+	MOSTPOP: 'Most Popular Book',
+	SEARCHAUTH: 'Search Book Titles by Author',
+	SEARCHTITLE: 'Search Statistics by Book Title',
+    AUTHORTIMESREAD: 'List all authors and their total times read',
+    RETURN: 'Return'
+}
+
 // EXPORTS
 exports.startMenu = startMenu
 exports.statisticsMenu = statisticsMenu
@@ -47,3 +55,4 @@ exports.listMenu = listMenu
 exports.memberMenu = memberMenu
 exports.memberStatMenu = memberStatMenu
 exports.genderMenu = genderMenu
+exports.bookStatMenu = bookStatMenu

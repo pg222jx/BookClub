@@ -183,7 +183,7 @@ class Database {
   }
 
   async getMostReadBook() {
-    const result = await this.doQuery("SELECT review.title, sum(review.timesRead) AS timesRead FROM review GROUP BY title ORDER BY timesRead DESC LIMIT 1")
+    const result = await this.doQuery("SELECT title, sum(timesRead) AS timesRead FROM review GROUP BY title ORDER BY timesRead DESC LIMIT 1")
 
     let book = {}
     result.forEach(element => {
