@@ -57,18 +57,6 @@ class StartMenu {
         }
     }
 
-    // async runStatistics(option) {
-    //     if (option === menuEnums.statisticsMenu.BOOKSTAT) {
-    //         const option = await this.bookStatistics.getOptions()
-    //         this.runBookStatistics(option)
-    //     } else if (option === menuEnums.statisticsMenu.MEMBERSTAT) {
-    //         const option = await this.memberStatistics.getOptions()
-    //         this.runMemberStatistics(option)
-    //     } else if (option === menuEnums.statisticsMenu.RETURN) {
-    //         this.run()
-    //     }
-    // }
-
     async runLists(option) {
         if (option === menuEnums.listMenu.AUTHORLIST) {
             const authors = await this.database.getAllAuthors()
@@ -114,71 +102,6 @@ class StartMenu {
             const reviews = await this.database.getBookReviews(title)
             this.print.bookReviews(reviews)
         } else if (answer ===  menuEnums.memberAndBookMenu.RETURN) {
-            this.run()
-        }
-    }
-
-    async runMemberStatistics(option) {
-        let gender
-        let result
-        if (option === menuEnums.memberStatMenu.MEMBERFEMALES) {
-            gender = menuEnums.genderMenu.FEMALE
-            result = await this.database.countMembers(gender)
-        } else if (option === menuEnums.memberStatMenu.MEMBERMALES) {
-            gender = menuEnums.genderMenu.MALE
-            result = await this.database.countMembers(gender)
-        } else if (option === menuEnums.memberStatMenu.AGETITLE) {
-            const age = await this.memberMenu.getAgeInput()
-            const title = await this.bookMenu.getTitleInput()
-            result = await this.database.getAgeTitleStatistics(age, title)
-     
-        } else if (option === menuEnums.memberStatMenu.GENDERYEAR) {
-            const gender = await this.memberMenu.getGenderOptions()
-            const year = await this.bookMenu.getYearInput()
-            result = await this.database.getGenderYearStatistics(gender, year)
-        } else if (option === menuEnums.memberStatMenu.RETURN) {
-            this.run()
-        } 
-        
-        this.print.singleValue(result)
-    }
-
-    async runBookStatistics(option) {
-        if (option === menuEnums.bookStatMenu.MOSTPOP) {
-            const option = await this.bookMenu.getPopularOptions()
-            this.runPopularOptions(option)
-        } else if (option === menuEnums.bookStatMenu.SEARCHAUTH) {
-            const author = await this.bookMenu.getAuthorInput() 
-            const titles = await this.database.getTitles(author)
-            for (let i = 0; i < titles.length; i++) {
-                this.print.singleValue(titles[i].title)
-            }
-        } else if (option === menuEnums.bookStatMenu.SEARCHTITLE) {
-            const title = await this.bookMenu.getInput()
-            const info = await this.database.getStatistics(title)
-            this.print.statistics(info)
-        } else if (option === menuEnums.bookStatMenu.AUTHORTIMESREAD) {
-            const info = await this.database.getAuthorsAndTimesRead()
-            for (let i = 0; i < info.length; i++) {
-                this.print.authorList(info[i])
-            }
-        } else if (option === menuEnums.bookStatMenu.RETURN) {
-            this.run()
-        } 
-    }
-
-    async runPopularOptions(option) {
-        if (option === menuEnums.popularMenu.TIMESREAD) {
-            const book = await this.database.getMostReadBook()
-            this.print.mostReadBook(book)
-        } else if (option === menuEnums.popularMenu.TOTALSCORE) {
-            const book = await this.database.getHighestTotalScore()
-            this.print.highestTotalScore(book)
-            this.run()
-        } else if (option === menuEnums.popularMenu.AVGSCORE) {
-            const book = await this.database.getPopularBookAvgScore()
-            this.print.highestAvgScore(book)
-        } else if (option === menuEnums.popularMenu.RETURN) {
             this.run()
         }
     }
