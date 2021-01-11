@@ -58,10 +58,14 @@ class StartMenu {
     async runMemberMenu(answer, username) {
         if (answer === menuEnums.memberAndBookMenu.INFO) {
             const user = await this.database.getUserInfo(username)
+            this.print.clearConsole()
             this.print.memberInfo(user)
+            this.run()
         } else if (answer === menuEnums.memberAndBookMenu.REVIEWS) {
             const reviews = await this.database.getUserReviews(username)
+            this.print.clearConsole()
             this.print.userReviews(reviews)
+            this.run()
         } else if (answer === menuEnums.memberAndBookMenu.RETURN) {
             this.run()
         }
@@ -70,10 +74,14 @@ class StartMenu {
     async runBookMenu(answer, title) {
         if (answer === menuEnums.memberAndBookMenu.INFO) {
             const book = await this.database.getBookInfo(title)
+            this.print.clearConsole()
             this.print.bookInfo(book)
+            this.run()
         } else if (answer === menuEnums.memberAndBookMenu.REVIEWS) {
             const reviews = await this.database.getBookReviews(title)
+            this.print.clearConsole()
             this.print.bookReviews(reviews)
+            this.run()
         } else if (answer ===  menuEnums.memberAndBookMenu.RETURN) {
             this.run()
         }
