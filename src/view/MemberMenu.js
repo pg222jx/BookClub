@@ -14,7 +14,7 @@ class MemberMenu {
         type: 'list',
         name: 'menu',
         message: 'Menu',
-        choices: [menuEnums.memberMenu.INFO, menuEnums.memberMenu.REVIEWS, menuEnums.memberMenu.RETURN],
+        choices: [menuEnums.memberAndBookMenu.INFO, menuEnums.memberAndBookMenu.REVIEWS, menuEnums.memberAndBookMenu.RETURN],
         filter: function (val) {
           return val
         }

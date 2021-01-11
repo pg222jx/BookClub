@@ -93,13 +93,13 @@ class StartMenu {
     }
 
     async runMemberMenu(answer, username) {
-        if (answer === menuEnums.memberMenu.INFO) {
+        if (answer === menuEnums.memberAndBookMenu.INFO) {
             const user = await this.database.getUserInfo(username)
             this.print.memberInfo(user)
-        } else if (answer === menuEnums.memberMenu.REVIEWS) {
+        } else if (answer === menuEnums.memberAndBookMenu.REVIEWS) {
             const reviews = await this.database.getUserReviews(username)
             this.print.userReviews(reviews)
-        } else if (answer === menuEnums.memberMenu.RETURN) {
+        } else if (answer === menuEnums.memberAndBookMenu.RETURN) {
             this.run()
         }
     }
@@ -142,40 +142,41 @@ class StartMenu {
     }
 
     async runBookStatistics(option) {
-        if (option === 'Most Popular Book') {
+        if (option === menuEnums.bookStatMenu.MOSTPOP) {
             const option = await this.bookMenu.getPopularOptions()
             this.runPopularOptions(option)
-        } else if (option === 'Search Book Titles by Author') {
+        } else if (option === menuEnums.bookStatMenu.SEARCHAUTH) {
             const author = await this.bookMenu.getAuthorInput() 
             const titles = await this.database.getTitles(author)
             for (let i = 0; i < titles.length; i++) {
                 this.print.singleValue(titles[i].title)
             }
-        } else if (option === 'Search Statistics by Book Title') {
+        } else if (option === menuEnums.bookStatMenu.SEARCHTITLE) {
             const title = await this.bookMenu.getInput()
             const info = await this.database.getStatistics(title)
             this.print.statistics(info)
-        } else if (option === 'List all authors and their total times read') {
+        } else if (option === menuEnums.bookStatMenu.AUTHORTIMESREAD) {
             const info = await this.database.getAuthorsAndTimesRead()
             for (let i = 0; i < info.length; i++) {
                 this.print.authorList(info[i])
             }
-        } else if (option === 'Return') {
+        } else if (option === menuEnums.bookStatMenu.RETURN) {
             this.run()
         } 
     }
 
     async runPopularOptions(option) {
-        if (option === 'Most Popular Book Seen by Times Read') {
+        if (option === menuEnums.popularMenu.TIMESREAD) {
             const book = await this.database.getMostReadBook()
             this.print.mostReadBook(book)
-        } else if (option === 'Most Popular Book Seen by Total Score') {
+        } else if (option === menuEnums.popularMenu.TOTALSCORE) {
             const book = await this.database.getHighestTotalScore()
             this.print.highestTotalScore(book)
             this.run()
-        } else if (option === 'Most Popular Book Seen by Average Score') {
+        } else if (option === menuEnums.popularMenu.AVGSCORE) {
             const book = await this.database.getPopularBookAvgScore()
             this.print.highestAvgScore(book)
+        } else if (option === menuEnums.popularMenu.RETURN) {
             this.run()
         }
     }

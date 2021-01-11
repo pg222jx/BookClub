@@ -21,7 +21,7 @@ const listMenu = {
     RETURN: 'Return'
 }
 
-const memberMenu = {
+const memberAndBookMenu = {
 	INFO: 'Information',
 	REVIEWS: 'Reviews',
     RETURN: 'Return'
@@ -48,11 +48,19 @@ const bookStatMenu = {
     RETURN: 'Return'
 }
 
+const popularMenu = {
+	TIMESREAD: 'Most Popular Book Seen by Times Read',
+	TOTALSCORE: 'Most Popular Book Seen by Total Score',
+	AVGSCORE: 'Most Popular Book Seen by Average Score',
+    RETURN: 'Return'
+}
+
 // EXPORTS
 exports.startMenu = startMenu
 exports.statisticsMenu = statisticsMenu
 exports.listMenu = listMenu
-exports.memberMenu = memberMenu
+exports.memberAndBookMenu = memberAndBookMenu
 exports.memberStatMenu = memberStatMenu
 exports.genderMenu = genderMenu
 exports.bookStatMenu = bookStatMenu
+exports.popularMenu = popularMenu

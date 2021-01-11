@@ -1,23 +1,22 @@
 const inquirer = require('inquirer') 
 const BookController = require('../controller/BookController')
+const menuEnums = require('./menuEnums') 
 
 class BookMenu {
   
   constructor() {
    this.controller = new BookController()
-
-   this.info = 'Information'
-   this.review = 'Reviews'
-   this.return = 'Return'
   }
 
+
+  //TODO: Görs denna i startmenu?
   async getOptions() {
     const start = [
       {
         type: 'list',
         name: 'menu',
         message: 'Menu',
-        choices: [this.info, this.review, this.return],
+        choices: [menuEnums.memberAndBookMenu.INFO, menuEnums.memberAndBookMenu.REVIEWS, menuEnums.memberAndBookMenu.RETURN],
         filter: function (val) {
           return val
         }
@@ -86,7 +85,7 @@ class BookMenu {
         type: 'list',
         name: 'options',
         message: 'Please choose an option',
-        choices: ['Most Popular Book Seen by Times Read', 'Most Popular Book Seen by Total Score', 'Most Popular Book Seen by Average Score'],
+        choices: [menuEnums.popularMenu.TIMESREAD, menuEnums.popularMenu.TOTALSCORE, menuEnums.popularMenu.AVGSCORE, menuEnums.popularMenu.RETURN],
         filter: function (val) {
           return val
         }

@@ -6,12 +6,6 @@ class BookStatistics {
   
   constructor() {
    this.controller = new BookController()
-
-   this.mostPopularBook = 'Most Popular Book'
-   this.searchAuthor = 'Search Book Titles by Author'
-   this.searchTitle = 'Search Statistics by Book Title'
-   this.authorListTimesRead = 'List all authors and their total times read'
-   this.return = 'Return'
   }
 
   async getOptions() {
