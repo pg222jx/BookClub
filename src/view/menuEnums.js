@@ -1,5 +1,5 @@
 /**
- * Java Script Enums from menus.
+ * Java Script Enums for menus.
  */
 
 const startMenu = {

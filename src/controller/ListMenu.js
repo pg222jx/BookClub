@@ -1,10 +1,9 @@
-const menuEnums = require('../view/menuEnums')
 const startApp = require('./startApp')
 const Print = require('../view/Print')
+const menuEnums = require('../view/menuEnums')
 const Database = require('../model/Database')
 
 class ListMenu {
-
     constructor() {
         this.database = new Database()
         this.database.connectToDatabase()

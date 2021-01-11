@@ -1,11 +1,11 @@
+const StatisticMenu = require('./StatisticMenu')
+const ListMenu = require('./ListMenu')
 const Menu = require('../view/Menu')
 const MemberMenu = require('../view/MemberMenu')
 const BookMenu = require('../view/BookMenu')
 const Print = require('../view/Print')
 const menuEnums = require('../view/menuEnums') 
 const Database = require('../model/Database')
-const StatisticMenu = require('./StatisticMenu')
-const ListMenu = require('./ListMenu')
 const InputChecker = require('../model/InputChecker')
 
 

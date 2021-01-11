@@ -1,11 +1,11 @@
+const startApp = require('./startApp')
 const menuEnums = require('../view/menuEnums')
 const BookStatistics = require('../view/BookStatistics')
 const MemberStatistics = require('../view/MemberStatistics')
 const MemberMenu = require('../view/MemberMenu')
 const BookMenu = require('../view/BookMenu')
-const Database = require('../model/Database')
-const startApp = require('./startApp')
 const Print = require('../view/Print')
+const Database = require('../model/Database')
 const InputChecker = require('../model/InputChecker')
 
 
