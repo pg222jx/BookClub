@@ -77,11 +77,10 @@ class StatisticMenu {
                 this.print.authorList(info[i])
             }
         } else if (option === menuEnums.bookStatMenu.RETURN) {
-            this.run()
+            startApp.startUp()
         } 
     }
 
-    
     async runPopularOptions(option) {
         if (option === menuEnums.popularMenu.TIMESREAD) {
             const book = await this.database.getMostReadBook()
@@ -94,10 +93,9 @@ class StatisticMenu {
             const book = await this.database.getPopularBookAvgScore()
             this.print.highestAvgScore(book)
         } else if (option === menuEnums.popularMenu.RETURN) {
-            this.run()
+            startApp.startUp()
         }
     }
-
 }
 
 // Exports
