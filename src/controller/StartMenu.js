@@ -44,10 +44,11 @@ class StartMenu {
                 const input = await this.memberMenu.getInput()
                 const members = await this.database.getAllUsernames()
                 if (this.inputChecker.isValidInput(input, members)) {
-                    this.run()
-                } else {
                     const option = await this.memberMenu.getOptions()
                     this.runMemberMenu(option, input)
+                } else {
+                    this.print.notValidInput()
+                    this.run()
                 }
             } else if (answer === menuEnums.startMenu.STATISTICS) {
                 const option = await this.menuView.getStatisticsOptions()

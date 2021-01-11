@@ -64,7 +64,7 @@ class Database {
   * @returns {Object} - One specific users age and gender.
   */
   async getUserInfo(username) {
-    const result = await this.doQuery("SELECT * FROM member WHERE username='" + username + "'")
+    const result = await this.doQuery("SELECT age, gender FROM member WHERE username='" + username + "'")
 
     let user = {}
     result.forEach(element => {
@@ -110,7 +110,7 @@ class Database {
   * @returns {Object} - One specific books author, publisher and year.
   */
   async getBookInfo(title) {
-    const result = await this.doQuery("SELECT * FROM book WHERE title='" + title + "'")
+    const result = await this.doQuery("SELECT author, publisher, year FROM book WHERE title='" + title + "'")
 
     let book = {}
     result.forEach(element => {
@@ -129,7 +129,7 @@ class Database {
   * @returns {Array} - One specific users reviews.
   */
   async getUserReviews(username) {
-    const result = await this.doQuery("SELECT * FROM review WHERE username='" + username + "'")
+    const result = await this.doQuery("SELECT title, author, score, timesRead FROM review WHERE username='" + username + "'")
 
     let reviews = []
     result.forEach(element => {
@@ -149,7 +149,7 @@ class Database {
   * @returns {Array} - All reviews made on a specific book.
   */
   async getBookReviews(title) {
-    const result = await this.doQuery("SELECT * FROM review WHERE title='" + title + "'") 
+    const result = await this.doQuery("SELECT username, score, timesRead FROM review WHERE title='" + title + "'") 
 
     let reviews = []
     result.forEach(element => {
@@ -165,12 +165,12 @@ class Database {
 
   /**
   * @param {string} gender - Input from user.
-  * @returns {Object} - Amount of members if a specific gender.
+  * @returns {Int} - Amount of members if a specific gender.
   */
   async countMembers(gender) {
     const result = await this.doQuery("SELECT COUNT(*) AS count FROM member WHERE gender='" + gender + "'") 
 
-    let count = {}
+    let count
     result.forEach(element => {
         count = element.count
     })
