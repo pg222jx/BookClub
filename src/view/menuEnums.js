@@ -1,4 +1,6 @@
 const startMenu = {
+	NAME: 'menu',
+	MESSAGE: 'Menu',
 	BOOKINFO: 'Book Information',
 	MEMBERINFO: 'Member Information',
 	STATISTICS: 'Statistics',
@@ -7,6 +9,8 @@ const startMenu = {
 }
 
 const statisticsMenu = {
+	NAME: 'choices',
+	MESSAGE: 'Please make a choice',
 	BOOKSTAT: 'Book Statistics',
 	MEMBERSTAT: 'Member Statistics',
 	RETURN: 'Return'

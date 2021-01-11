@@ -1,13 +1,8 @@
 const inquirer = require('inquirer') 
-const BookController = require('../controller/BookController')
 const menuEnums = require('./menuEnums') 
 
 class MemberStatistics {
   
-  constructor() {
-   this.controller = new BookController()
-  }
-
   async getOptions() {
     const start = [
       {

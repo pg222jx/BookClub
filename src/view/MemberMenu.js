@@ -1,12 +1,7 @@
 const inquirer = require('inquirer') 
-const MemberController = require('../controller/MemberController')
 const menuEnums = require('./menuEnums') 
 
 class MemberMenu {
-
-  constructor() {
-   this.controller = new MemberController()
-  }
 
   async getOptions() {
     const start = [

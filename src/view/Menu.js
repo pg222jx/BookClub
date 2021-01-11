@@ -7,8 +7,8 @@ class Menu {
     const start = [
       {
         type: menuEnums.inquirerType.LIST,
-        name: 'menu',
-        message: 'Menu',
+        name: menuEnums.startMenu.NAME,
+        message: menuEnums.startMenu.MESSAGE,
         choices: [menuEnums.startMenu.BOOKINFO, menuEnums.startMenu.MEMBERINFO, 
           menuEnums.startMenu.STATISTICS, menuEnums.startMenu.LISTS, menuEnums.startMenu.QUIT],
         filter: function (val) {
@@ -25,8 +25,8 @@ class Menu {
     const choices = [
       {
         type: menuEnums.inquirerType.LIST,
-        name: 'choices',
-        message: 'Please make a choice',
+        name: menuEnums.statisticsMenu.NAME,
+        message: menuEnums.statisticsMenu.MESSAGE,
         choices: [menuEnums.statisticsMenu.BOOKSTAT, menuEnums.statisticsMenu.MEMBERSTAT, 
           menuEnums.statisticsMenu.RETURN],
         filter: function (val) {
