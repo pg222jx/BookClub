@@ -20,7 +20,14 @@ class InputChecker {
         return true
     }
   }
- 
+
+  isValidYear(year) {
+    if (isNaN(year) || year === '' || year < 0 || year > 2500) {
+      return false
+    } else {
+      return true
+    }
+  }
 }
 
 // Exports

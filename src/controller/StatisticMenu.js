@@ -71,10 +71,15 @@ class StatisticMenu {
         } else if (option === menuEnums.memberStatMenu.GENDERYEAR) {
             const gender = await this.memberMenu.getGenderOptions()
             const year = await this.bookMenu.getYearInput()
-            result = await this.database.getGenderYearStatistics(gender, year)
-            this.print.clearConsole()
-            this.print.singleValue(result)
-            startApp.startUp()
+            if (this.inputChecker.isValidYear(year)) {
+                result = await this.database.getGenderYearStatistics(gender, year)
+                this.print.clearConsole()
+                this.print.singleValue(result)
+                startApp.startUp()
+            } else {
+                this.print.notValidInput()
+                startApp.startUp()
+            }
         } else if (option === menuEnums.memberStatMenu.RETURN) {
             startApp.startUp()
         } 
