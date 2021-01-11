@@ -21,6 +21,12 @@ const listMenu = {
     RETURN: 'Return'
 }
 
+const memberMenu = {
+	INFO: 'Information',
+	REVIEWS: 'Reviews',
+    RETURN: 'Return'
+}
+
 // EXPORTS
 exports.startMenu = startMenu
 exports.statisticsMenu = statisticsMenu
