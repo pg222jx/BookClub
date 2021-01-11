@@ -171,7 +171,7 @@ class Database {
   * @returns {Array} - All authors in the database.
   */
   async getAllAuthors() {
-    const result = await this.doQuery("SELECT author FROM book")
+    const result = await this.doQuery("SELECT DISTINCT author FROM book")
 
     let authors = []
     result.forEach(element => {
