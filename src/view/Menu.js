@@ -1,14 +1,7 @@
 const inquirer = require('inquirer') 
+const menuEnums = require('./menuEnums') 
 
 class Menu {
-
-  constructor() {
-   this.bookI = 'Book Information'
-   this.memberI = 'Member Information'
-   this.statistics = 'Statistics'
-   this.lists = 'Lists'
-   this.quit = 'Quit'
-  }
 
   async getOptions() {
     const start = [
@@ -16,7 +9,8 @@ class Menu {
         type: 'list',
         name: 'menu',
         message: 'Menu',
-        choices: [this.bookI, this.memberI, this.statistics, this.lists, this.quit],
+        choices: [menuEnums.startMenu.BOOKINFO, menuEnums.startMenu.MEMBERINFO, 
+          menuEnums.startMenu.STATISTICS, menuEnums.startMenu.LISTS, menuEnums.startMenu.QUIT],
         filter: function (val) {
           return val
         }
@@ -33,7 +27,8 @@ class Menu {
         type: 'list',
         name: 'choices',
         message: 'Please make a choice',
-        choices: ['Book Statistics', 'Member Statistics', 'Return'],
+        choices: [menuEnums.statisticsMenu.BOOKSTAT, menuEnums.statisticsMenu.MEMBERSTAT, 
+          menuEnums.statisticsMenu.RETURN],
         filter: function (val) {
           return val
         }
@@ -50,7 +45,9 @@ class Menu {
         type: 'list',
         name: 'choices',
         message: 'Please make a choice',
-        choices: ['List all Authors', 'List Authors and Times Read', 'List all Book Titles', 'List Reviewed Books','List all Members', 'Return'],
+        choices: [menuEnums.listMenu.AUTHORLIST, menuEnums.listMenu.AUTHORTIMESREAD, 
+          menuEnums.listMenu.BOOKTITLES, menuEnums.listMenu.REVIEWEDBOOKS,menuEnums.listMenu.MEMBERS, 
+          menuEnums.listMenu.RETURN],
         filter: function (val) {
           return val
         }
