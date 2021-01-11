@@ -26,7 +26,8 @@ class StartMenu {
 
             if (answer === menuEnums.startMenu.BOOKINFO) {
                 const input = await this.bookMenu.getInput()
-                if (this.inputChecker(input)) {
+                const titles = await this.database.getAllBookTitles()
+                if (this.inputChecker(input, titles)) {
                     this.run()
                 } else {
                 const option = await this.bookMenu.getOptions()
@@ -87,8 +88,17 @@ class StartMenu {
         }
     }
 
-    inputChecker(input) {
-        if (input === '') {
+    inputChecker(input, menu) {
+
+        for (let prop in menu) {
+            menu[prop] = menu[prop].toLowerCase()
+        }
+
+        input = input.toLowerCase()
+        if(Object.values(menu).includes(input)) {
+           return false
+        } else {
+            console.log(Object.values(menu))
             this.print.notValidInput()
             return true
         }
