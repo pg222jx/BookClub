@@ -105,13 +105,13 @@ class StartMenu {
     }
 
     async runBookMenu(answer, title) {
-        if (answer === 'Information') {
+        if (answer === menuEnums.memberAndBookMenu.INFO) {
             const book = await this.database.getBookInfo(title)
             this.print.bookInfo(book)
-        } else if (answer === 'Reviews') {
+        } else if (answer === menuEnums.memberAndBookMenu.REVIEWS) {
             const reviews = await this.database.getBookReviews(title)
             this.print.bookReviews(reviews)
-        } else if (answer === 'Return') {
+        } else if (answer ===  menuEnums.memberAndBookMenu.RETURN) {
             this.run()
         }
     }

@@ -8,8 +8,6 @@ class BookMenu {
    this.controller = new BookController()
   }
 
-
-  //TODO: Görs denna i startmenu?
   async getOptions() {
     const start = [
       {
