@@ -1,8 +1,7 @@
-const StartMenu = require('./controller/StartMenu')
+const startApp = require('./controller/startApp')
 const Print = require('./view/Print')
 
 const print = new Print()
 print.welcomeMessage()
 
-startMenu = new StartMenu()
-startMenu.run()
+startApp.startUp()

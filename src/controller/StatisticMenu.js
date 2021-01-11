@@ -1,11 +1,13 @@
 const menuEnums = require('../view/menuEnums')
 const BookStatistics = require('../view/BookStatistics')
 const MemberStatistics = require('../view/MemberStatistics')
+const startApp = require('./startApp')
 
 class StatisticMenu {
 
     constructor() {
-
+        this.memberStatistics = new MemberStatistics()
+        this.bookStatistics = new BookStatistics()
     }
 
     async runStatistics(option) {
@@ -16,7 +18,7 @@ class StatisticMenu {
             const option = await this.memberStatistics.getOptions()
             this.runMemberStatistics(option)
         } else if (option === menuEnums.statisticsMenu.RETURN) {
-            this.run()
+            startApp.startUp()
         }
     }
 
