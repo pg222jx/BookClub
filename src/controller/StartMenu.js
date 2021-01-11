@@ -6,9 +6,10 @@ const menuEnums = require('../view/menuEnums')
 const Database = require('../model/Database')
 const StatisticMenu = require('./StatisticMenu')
 const ListMenu = require('./ListMenu')
+const InputChecker = require('../model/InputChecker')
+
 
 class StartMenu {
-
     constructor() {
         this.database = new Database()
         this.database.connectToDatabase()
@@ -17,7 +18,8 @@ class StartMenu {
         this.memberMenu = new MemberMenu()
         this.bookMenu = new BookMenu()
         this.statisticMenu = new StatisticMenu()
-        this.ListMenu = new ListMenu()
+        this.listMenu = new ListMenu()
+        this.inputChecker = new InputChecker()
     }
 
     async run() {
@@ -27,7 +29,8 @@ class StartMenu {
             if (answer === menuEnums.startMenu.BOOKINFO) {
                 const input = await this.bookMenu.getInput()
                 const titles = await this.database.getAllBookTitles()
-                if (this.inputChecker(input, titles)) {
+                if (this.inputChecker.isValidInput(input, titles)) {
+                    this.print.notValidInput()
                     this.run()
                 } else {
                 const option = await this.bookMenu.getOptions()
@@ -36,7 +39,7 @@ class StartMenu {
             } else if (answer === menuEnums.startMenu.MEMBERINFO) {
                 const input = await this.memberMenu.getInput()
                 const members = await this.database.getAllUsernames()
-                if (this.inputChecker(input, members)) {
+                if (this.inputChecker.isValidInput(input, members)) {
                     this.run()
                 } else {
                     const option = await this.memberMenu.getOptions()
@@ -47,7 +50,7 @@ class StartMenu {
                 this.statisticMenu.runStatistics(option)
             } else if (answer === menuEnums.startMenu.LISTS) {
                 const option = await this.menuView.getListOptions()
-                this.ListMenu.runLists(option)
+                this.listMenu.runLists(option)
             } else if (answer === menuEnums.startMenu.QUIT) {
                 this.print.exitMessage()
                 process.exit(0)
@@ -86,21 +89,6 @@ class StartMenu {
             this.run()
         } else if (answer ===  menuEnums.memberAndBookMenu.RETURN) {
             this.run()
-        }
-    }
-
-    inputChecker(input, menu) {
-
-        for (let prop in menu) {
-            menu[prop] = menu[prop].toLowerCase()
-        }
-        input = input.toLowerCase()
-
-        if(Object.values(menu).includes(input)) {
-           return false
-        } else {
-            this.print.notValidInput()
-            return true
         }
     }
 }

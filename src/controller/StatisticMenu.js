@@ -6,6 +6,7 @@ const BookMenu = require('../view/BookMenu')
 const Database = require('../model/Database')
 const startApp = require('./startApp')
 const Print = require('../view/Print')
+const InputChecker = require('../model/InputChecker')
 
 
 class StatisticMenu {
@@ -18,6 +19,7 @@ class StatisticMenu {
         this.memberMenu = new MemberMenu()
         this.bookMenu = new BookMenu()
         this.print = new Print()
+        this.inputChecker = new InputChecker()
     }
 
     async runStatistics(option) {
@@ -50,7 +52,7 @@ class StatisticMenu {
         } else if (option === menuEnums.memberStatMenu.AGETITLE) {
             const age = await this.memberMenu.getAgeInput()
 
-            if (this.isValidAge(age)) {
+            if (this.inputChecker.isValidAge(age)) {
 
                 const title = await this.bookMenu.getTitleInput()
                 result = await this.database.getAgeTitleStatistics(age, title)
@@ -58,6 +60,7 @@ class StatisticMenu {
                 this.print.singleValue(result)
                 startApp.startUp()
             } else {
+                this.print.notValidInput()
                 startApp.startUp()
             }
         } else if (option === menuEnums.memberStatMenu.GENDERYEAR) {
@@ -120,15 +123,6 @@ class StatisticMenu {
             startApp.startUp()
         } else if (option === menuEnums.popularMenu.RETURN) {
             startApp.startUp()
-        }
-    }
-
-    isValidAge(age) {
-        if (isNaN(age) || age === '' || age < 0 || age > 100) {
-            this.print.notValidInput()
-            return false
-        } else {
-            return true
         }
     }
 }
