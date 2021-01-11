@@ -55,6 +55,11 @@ const popularMenu = {
     RETURN: 'Return'
 }
 
+const inquirerType = {
+	LIST: 'list',
+	INPUT: 'input'
+}
+
 // EXPORTS
 exports.startMenu = startMenu
 exports.statisticsMenu = statisticsMenu
@@ -64,3 +69,4 @@ exports.memberStatMenu = memberStatMenu
 exports.genderMenu = genderMenu
 exports.bookStatMenu = bookStatMenu
 exports.popularMenu = popularMenu
+exports.inquirerType = inquirerType

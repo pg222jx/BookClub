@@ -11,7 +11,7 @@ class BookMenu {
   async getOptions() {
     const start = [
       {
-        type: 'list',
+        type: menuEnums.inquirerType.LIST,
         name: 'menu',
         message: 'Menu',
         choices: [menuEnums.memberAndBookMenu.INFO, menuEnums.memberAndBookMenu.REVIEWS, menuEnums.memberAndBookMenu.RETURN],
@@ -28,7 +28,7 @@ class BookMenu {
   async getInput() {
     const input = [
       {
-        type: 'input',
+        type: menuEnums.inquirerType.INPUT,
         name: 'title',
         message: 'Which book title do you want to search for?'
       }
@@ -41,7 +41,7 @@ class BookMenu {
   async getTitleInput() {
     const input = [
       {
-        type: 'input',
+        type: menuEnums.inquirerType.INPUT,
         name: 'title',
         message: 'Which title?'
       }
@@ -54,7 +54,7 @@ class BookMenu {
   async getYearInput() {
     const input = [
       {
-        type: 'input',
+        type: menuEnums.inquirerType.INPUT,
         name: 'year',
         message: 'Before which year?'
       }
@@ -67,7 +67,7 @@ class BookMenu {
   async getAuthorInput() {
     const input = [
       {
-        type: 'input',
+        type: menuEnums.inquirerType.INPUT,
         name: 'author',
         message: 'Which author?'
       }
@@ -80,7 +80,7 @@ class BookMenu {
   async getPopularOptions() {
     const options = [
       {
-        type: 'list',
+        type: menuEnums.inquirerType.LIST,
         name: 'options',
         message: 'Please choose an option',
         choices: [menuEnums.popularMenu.TIMESREAD, menuEnums.popularMenu.TOTALSCORE, menuEnums.popularMenu.AVGSCORE, menuEnums.popularMenu.RETURN],

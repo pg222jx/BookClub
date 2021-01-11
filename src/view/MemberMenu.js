@@ -11,7 +11,7 @@ class MemberMenu {
   async getOptions() {
     const start = [
       {
-        type: 'list',
+        type: menuEnums.inquirerType.LIST,
         name: 'menu',
         message: 'Menu',
         choices: [menuEnums.memberAndBookMenu.INFO, menuEnums.memberAndBookMenu.REVIEWS, menuEnums.memberAndBookMenu.RETURN],
@@ -28,7 +28,7 @@ class MemberMenu {
   async getInput() {
     const input = [
       {
-        type: 'input',
+        type: menuEnums.inquirerType.INPUT,
         name: 'username',
         message: 'Which member do you want to search for?'
       }
@@ -41,7 +41,7 @@ class MemberMenu {
   async getAgeInput() {
     const input = [
       {
-        type: 'input',
+        type: menuEnums.inquirerType.INPUT,
         name: 'age',
         message: 'Under what age limit?'
       }
@@ -54,7 +54,7 @@ class MemberMenu {
   async getGenderOptions() {
     const choose = [
       {
-        type: 'list',
+        type: menuEnums.inquirerType.LIST,
         name: 'gender',
         message: 'Choose gender',
         choices: [menuEnums.genderMenu.FEMALE, menuEnums.genderMenu.MALE],

@@ -6,7 +6,7 @@ class Menu {
   async getOptions() {
     const start = [
       {
-        type: 'list',
+        type: menuEnums.inquirerType.LIST,
         name: 'menu',
         message: 'Menu',
         choices: [menuEnums.startMenu.BOOKINFO, menuEnums.startMenu.MEMBERINFO, 
@@ -24,7 +24,7 @@ class Menu {
   async getStatisticsOptions() {
     const choices = [
       {
-        type: 'list',
+        type: menuEnums.inquirerType.LIST,
         name: 'choices',
         message: 'Please make a choice',
         choices: [menuEnums.statisticsMenu.BOOKSTAT, menuEnums.statisticsMenu.MEMBERSTAT, 
@@ -42,7 +42,7 @@ class Menu {
   async getListOptions() {
     const choices = [
       {
-        type: 'list',
+        type: menuEnums.inquirerType.LIST,
         name: 'choices',
         message: 'Please make a choice',
         choices: [menuEnums.listMenu.AUTHORLIST, menuEnums.listMenu.AUTHORTIMESREAD, 

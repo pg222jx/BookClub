@@ -11,7 +11,7 @@ class MemberStatistics {
   async getOptions() {
     const start = [
       {
-        type: 'list',
+        type: menuEnums.inquirerType.LIST,
         name: 'menu',
         message: 'Menu',
         choices: [menuEnums.memberStatMenu.MEMBERFEMALES, menuEnums.memberStatMenu.MEMBERMALES, 
