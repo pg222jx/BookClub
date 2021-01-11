@@ -7,8 +7,8 @@ class MemberStatistics {
     const start = [
       {
         type: menuEnums.inquirerType.LIST,
-        name: 'menu',
-        message: 'Menu',
+        name: menuEnums.memberStatMenu.NAME,
+        message: menuEnums.memberStatMenu.MESSAGE,
         choices: [menuEnums.memberStatMenu.MEMBERFEMALES, menuEnums.memberStatMenu.MEMBERMALES, 
           menuEnums.memberStatMenu.AGETITLE, menuEnums.memberStatMenu.GENDERYEAR, menuEnums.memberStatMenu.RETURN],
         filter: function (val) {

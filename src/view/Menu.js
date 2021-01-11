@@ -43,8 +43,8 @@ class Menu {
     const choices = [
       {
         type: menuEnums.inquirerType.LIST,
-        name: 'choices',
-        message: 'Please make a choice',
+        name: menuEnums.listMenu.NAME,
+        message: menuEnums.listMenu.MESSAGE,
         choices: [menuEnums.listMenu.AUTHORLIST, menuEnums.listMenu.AUTHORTIMESREAD, 
           menuEnums.listMenu.BOOKTITLES, menuEnums.listMenu.REVIEWEDBOOKS,menuEnums.listMenu.MEMBERS, 
           menuEnums.listMenu.RETURN],

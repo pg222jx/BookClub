@@ -7,8 +7,8 @@ class BookStatistics {
     const start = [
       {
         type: menuEnums.inquirerType.LIST,
-        name: 'menu',
-        message: 'Menu',
+        name: menuEnums.bookStatMenu.NAME,
+        message: menuEnums.bookStatMenu.MESSAGE,
         choices: [menuEnums.bookStatMenu.MOSTPOP, menuEnums.bookStatMenu.SEARCHAUTH, menuEnums.bookStatMenu.SEARCHTITLE,
           menuEnums.bookStatMenu.AUTHORTIMESREAD, menuEnums.bookStatMenu.RETURN],
         filter: function (val) {

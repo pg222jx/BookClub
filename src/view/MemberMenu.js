@@ -7,8 +7,8 @@ class MemberMenu {
     const start = [
       {
         type: menuEnums.inquirerType.LIST,
-        name: 'menu',
-        message: 'Menu',
+        name: menuEnums.memberAndBookMenu.NAME,
+        message: menuEnums.memberAndBookMenu.MESSAGE,
         choices: [menuEnums.memberAndBookMenu.INFO, menuEnums.memberAndBookMenu.REVIEWS, menuEnums.memberAndBookMenu.RETURN],
         filter: function (val) {
           return val
@@ -50,8 +50,8 @@ class MemberMenu {
     const choose = [
       {
         type: menuEnums.inquirerType.LIST,
-        name: 'gender',
-        message: 'Choose gender',
+        name: menuEnums.genderMenu.NAME,
+        message: menuEnums.genderMenu.MESSAGE,
         choices: [menuEnums.genderMenu.FEMALE, menuEnums.genderMenu.MALE],
         filter: function (val) {
           return val

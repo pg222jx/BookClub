@@ -17,6 +17,8 @@ const statisticsMenu = {
 }
 
 const listMenu = {
+	NAME: 'choices',
+	MESSAGE: 'Menu',
 	AUTHORLIST: 'List all Authors',
 	AUTHORTIMESREAD: 'List Authors and Times Read',
 	BOOKTITLES: 'List all Book Titles',
@@ -26,12 +28,16 @@ const listMenu = {
 }
 
 const memberAndBookMenu = {
+	NAME: 'menu',
+	MESSAGE: 'Menu',
 	INFO: 'Information',
 	REVIEWS: 'Reviews',
     RETURN: 'Return'
 }
 
 const memberStatMenu = {
+	NAME: 'menu',
+	MESSAGE: 'Menu',
 	MEMBERFEMALES: 'How Many Members are Females?',
 	MEMBERMALES: 'How Many Members are Males?',
 	AGETITLE: 'How Many Members Under { choose age } Has Read { choose title }?',
@@ -40,11 +46,15 @@ const memberStatMenu = {
 }
 
 const genderMenu = {
+	NAME: 'gender',
+	MESSAGE: 'Choose gender',
 	FEMALE: 'Female',
 	MALE: 'Male',
 }
 
 const bookStatMenu = {
+	NAME: 'menu',
+	MESSAGE: 'Menu',
 	MOSTPOP: 'Most Popular Book',
 	SEARCHAUTH: 'Search Book Titles by Author',
 	SEARCHTITLE: 'Search Statistics by Book Title',
@@ -53,6 +63,8 @@ const bookStatMenu = {
 }
 
 const popularMenu = {
+	NAME: 'options',
+	MESSAGE: 'Please choose an option',
 	TIMESREAD: 'Most Popular Book Seen by Times Read',
 	TOTALSCORE: 'Most Popular Book Seen by Total Score',
 	AVGSCORE: 'Most Popular Book Seen by Average Score',
