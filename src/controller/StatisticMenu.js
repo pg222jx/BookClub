@@ -53,12 +53,17 @@ class StatisticMenu {
             const age = await this.memberMenu.getAgeInput()
 
             if (this.inputChecker.isValidAge(age)) {
-
                 const title = await this.bookMenu.getTitleInput()
-                result = await this.database.getAgeTitleStatistics(age, title)
-                this.print.clearConsole()
-                this.print.singleValue(result)
-                startApp.startUp()
+                const titles = await this.database.getAllBookTitles()
+                if (this.inputChecker.isValidInput(title, titles)) {
+                    result = await this.database.getAgeTitleStatistics(age, title)
+                    this.print.clearConsole()
+                    this.print.singleValue(result)
+                    startApp.startUp() 
+                } else {
+                    this.print.notValidInput()
+                    startApp.startUp()
+                }
             } else {
                 this.print.notValidInput()
                 startApp.startUp()

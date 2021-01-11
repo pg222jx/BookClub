@@ -7,9 +7,9 @@ class InputChecker {
     input = input.toLowerCase()
 
     if(Object.values(menu).includes(input)) {
-       return false
+       return true
     } else {
-        return true
+        return false
     }
   }
 

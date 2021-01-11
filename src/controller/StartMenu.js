@@ -30,11 +30,11 @@ class StartMenu {
                 const input = await this.bookMenu.getInput()
                 const titles = await this.database.getAllBookTitles()
                 if (this.inputChecker.isValidInput(input, titles)) {
+                    const option = await this.bookMenu.getOptions()
+                    this.runBookMenu(option, input) 
+                } else {
                     this.print.notValidInput()
                     this.run()
-                } else {
-                const option = await this.bookMenu.getOptions()
-                this.runBookMenu(option, input)
                 }
             } else if (answer === menuEnums.startMenu.MEMBERINFO) {
                 const input = await this.memberMenu.getInput()
