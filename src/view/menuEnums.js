@@ -45,7 +45,7 @@ const memberStatMenu = {
 	MEMBERFEMALES: 'How Many Members are Females?',
 	MEMBERMALES: 'How Many Members are Males?',
 	AGETITLE: 'How Many Members Under { choose age } Has Read { choose title }?',
-    GENDERYEAR: 'How Many { choose gender } Members Has Read a Book Written Before { choose year }?',
+    GENDERYEAR: 'What Score Did All { choose gender } Give All Books Written Before { choose year }?',
     RETURN: 'Return'
 }
 
