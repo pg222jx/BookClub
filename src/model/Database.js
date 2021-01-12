@@ -65,28 +65,38 @@ class Database {
   /**
   * @param {string} gender - Input from user.
   * @param {string} year - Input from user.
-  * @returns {Object} - The amount of members with a certain gender that have read a book written before a certain year.
+  * @returns {Array} - The amount of members with a certain gender that have read a book written before a certain year.
   */
  async getGenderYearStatistics(gender, year) {
   await this.doQuery("DROP VIEW IF EXISTS newView")
-  await this.doQuery("CREATE VIEW newView AS SELECT member.username, member.gender, review.title, review.score, book.author, book.year FROM member, review, book WHERE member.username = review.username AND review.title = book.title")
-  const result = await this.doQuery("SELECT DISTINCT count(*) AS sum FROM newView WHERE gender='" + gender + "' AND year <" + year)
+  await this.doQuery("CREATE VIEW newView AS SELECT member.username, member.gender, review.title, review.score, review.timesRead, book.author, book.year FROM member, review, book WHERE member.username = review.username AND review.title = book.title AND review.author = book.author")
+  const result = await this.doQuery("SELECT DISTINCT username, title, author, score FROM newView WHERE gender='" + gender + "' AND year <" + year)
   
-  let count = {}
-  result.forEach(element => {
-      count = {
-        sum: element.sum
-      }
-    })
+  // let count = {}
+  // result.forEach(element => {
+  //     count = {
+  //       sum: element.sum
+  //     }
+  //   })
 
-  return count.sum
+  let reviews = []
+  result.forEach(element => {
+    reviews.push({
+      username: element.username,
+        title: element.title,
+        author: element.author,
+        score: element.score
+    })
+  })
+
+ return reviews
 }
 
   /**
   * @returns {Object} - The book that has been read most times.
   */
  async getMostReadBook() {
-  const result = await this.doQuery("SELECT title, sum(timesRead) AS timesRead FROM review GROUP BY title ORDER BY timesRead DESC LIMIT 1")
+  const result = await this.doQuery("SELECT title, author, sum(timesRead) AS timesRead FROM review GROUP BY title, author ORDER BY timesRead DESC LIMIT 1")
 
   let book = {}
   result.forEach(element => {

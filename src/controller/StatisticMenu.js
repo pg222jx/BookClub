@@ -83,12 +83,15 @@ class StatisticMenu {
             if (this.inputChecker.isValidYear(year)) {
                 result = await this.database.getGenderYearStatistics(gender, year)
                 this.print.clearConsole()
-                this.print.singleValue(result)
+                        for (let i = 0; i < result.length; i++) {
+                this.print.genderYear(result[i])
+            }
                 startApp.startUp()
             } else {
                 this.print.notValidInput()
                 startApp.startUp()
             }
+
         } else if (option === menuEnums.memberStatMenu.RETURN) {
             startApp.startUp()
         } 

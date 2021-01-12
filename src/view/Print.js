@@ -73,6 +73,12 @@ class Print {
         console.log('_______________________________')
     }
 
+    genderYear(info) {
+        console.log('Username: ' + info.username + ', ' + 'Title: ' + info.title + ', ' + 'Author: ' + info.author + ', ' + 'Score: ' + info.score)
+        console.log()
+        console.log('_______________________________')
+    }
+
     mostReadBook(book) {
         console.log('Title: ' + book.title + ', ' + 'Times Read: ' + book.timesRead)
         console.log()
