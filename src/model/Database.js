@@ -113,7 +113,7 @@ class Database {
   * @returns {Array} - All authors and how many times all their books have been read.
   */
  async getAuthorsAndTimesRead() {
-  const result = await this.doQuery("SELECT book.author, sum(review.timesRead) AS timesRead FROM book INNER JOIN review WHERE book.title=review.title AND book.author=review.author GROUP BY book.author ASC")
+  const result = await this.doQuery("SELECT book.author, sum(review.timesRead) AS timesRead FROM book INNER JOIN review WHERE book.title = review.title AND book.author = review.author GROUP BY book.author ASC")
   
   let authors = []
   result.forEach(element => {
@@ -127,15 +127,16 @@ class Database {
 }
 
   /**
-  * @returns {Array} - Book title and average score of every reviewed book.
+  * @returns {Array} - Average score and times read of every reviewed book.
   */
  async getReviewedBooks() {
-  const result = await this.doQuery("SELECT title, (sum(score)/COUNT(*)) AS avgScore, COUNT(*) AS reviewsAmount FROM review GROUP BY title")
+  const result = await this.doQuery("SELECT title, author, (sum(score)/COUNT(*)) AS avgScore, COUNT(*) AS reviewsAmount FROM review GROUP BY title, author")
 
   let books = []
   result.forEach(element => {
     books.push({
       title: element.title,
+      author: element.author,
       avgScore: element.avgScore,
       reviewsAmount: element.reviewsAmount
     })

@@ -56,7 +56,7 @@ class Print {
     } 
 
     reviewedBooks(list) {
-        console.log('Title: ' + list.title + ', ' + 'Average Score: ' + list.avgScore + ', ' + 'Number of Reviews: ' + list.reviewsAmount)
+        console.log('Title: ' + list.title + ', ' + 'Author: ' + list.author + ', ' + 'Average Score: ' + list.avgScore + ', ' + 'Number of Reviews: ' + list.reviewsAmount)
         console.log()
         console.log('_______________________________')
     }
