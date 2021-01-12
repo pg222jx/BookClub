@@ -79,6 +79,7 @@ class Database {
   //     }
   //   })
 
+  //Om vi ska behålla detta så måste return i kommentar ändras
   let reviews = []
   result.forEach(element => {
     reviews.push({
