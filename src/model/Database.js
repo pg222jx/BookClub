@@ -65,7 +65,7 @@ class Database {
   /**
   * @param {string} gender - Input from user.
   * @param {string} year - Input from user.
-  * @returns {Array} - The amount of members with a certain gender that have read a book written before a certain year.
+  * @returns {Array} - All reviews with score of books written before a specific year from a certain gender.
   */
  async getGenderYearStatistics(gender, year) {
   await this.doQuery("DROP VIEW IF EXISTS newView")
