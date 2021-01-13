@@ -1,5 +1,5 @@
 /**
- * Java Script Enums for menus.
+ * JavaScript Enums for menus.
  */
 
 const startMenu = {
@@ -106,7 +106,7 @@ const inquirerType = {
 	INPUT: 'input'
 }
 
-// EXPORTS
+// Exports
 exports.startMenu = startMenu
 exports.statisticsMenu = statisticsMenu
 exports.listMenu = listMenu

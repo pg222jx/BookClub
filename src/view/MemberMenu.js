@@ -3,7 +3,7 @@ const menuEnums = require('./menuEnums')
 
 class MemberMenu {
 
-    /**
+  /**
    * Prints the member menu to the console.
    * 
    * @returns {string} - The users input from the menu.

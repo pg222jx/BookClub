@@ -72,15 +72,6 @@ class Database {
   await this.doQuery("CREATE VIEW newView AS SELECT member.username, member.gender, review.title, review.score, review.timesRead, book.author, book.year FROM member, review, book WHERE member.username = review.username AND review.title = book.title AND review.author = book.author")
   const result = await this.doQuery("SELECT DISTINCT username, title, author, score FROM newView WHERE gender='" + gender + "' AND year <" + year)
   
-  // let count = {}
-  // result.forEach(element => {
-  //     count = {
-  //       sum: element.sum
-  //     }
-  //   })
-
-  //Om vi ska behålla detta så måste return i kommentar ändras
-  let reviews = []
   result.forEach(element => {
     reviews.push({
       username: element.username,

@@ -132,7 +132,7 @@ class StatisticMenu {
         } 
     }
 
-        /**
+    /**
     * Handles logic for the most popular book submenu
     *
     * @param {string} option - Menu option from user.
